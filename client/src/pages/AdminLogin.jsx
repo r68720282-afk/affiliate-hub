@@ -2,69 +2,118 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const API = "/api/auth/login";
+
 export default function AdminLogin() {
+
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
+  });
+
+  const [loading, setLoading] =
+    useState(false);
+
+  function updateField(name, value) {
+
+    setForm(prev => ({
+      ...prev,
+      [name]: value
+    }));
+
+  }
 
   async function handleSubmit(e) {
+
     e.preventDefault();
 
     try {
+
       setLoading(true);
 
-      const res = await axios.post("/api/auth/login", {
-        email,
-        password
-      });
+      const { data } =
+        await axios.post(API, form);
 
-      localStorage.setItem("adminToken", res.data.token);
+      localStorage.setItem(
+        "adminToken",
+        data.token
+      );
 
       navigate("/admin");
+
     } catch (err) {
+
+      console.error(err);
+
       alert(
-        err.response?.data?.message ||
-        "Login Failed"
+        err?.response?.data?.message ||
+        "Login failed."
       );
+
     } finally {
+
       setLoading(false);
+
     }
+
   }
 
   return (
+
     <div className="adminLogin">
 
       <form
-        className="loginBox"
+        className="loginCard"
         onSubmit={handleSubmit}
       >
 
-        <h2>Admin Login</h2>
+        <h1>
+
+          Admin Login
+
+        </h1>
 
         <input
           type="email"
           placeholder="Email"
-          value={email}
-          onChange={(e)=>setEmail(e.target.value)}
-          required
+          value={form.email}
+          onChange={(e)=>
+            updateField(
+              "email",
+              e.target.value
+            )
+          }
         />
 
         <input
           type="password"
           placeholder="Password"
-          value={password}
-          onChange={(e)=>setPassword(e.target.value)}
-          required
+          value={form.password}
+          onChange={(e)=>
+            updateField(
+              "password",
+              e.target.value
+            )
+          }
         />
 
-        <button disabled={loading}>
-          {loading ? "Logging In..." : "Login"}
+        <button
+          type="submit"
+          disabled={loading}
+        >
+
+          {loading
+            ? "Logging in..."
+            : "Login"}
+
         </button>
 
       </form>
 
     </div>
+
   );
+
 }
