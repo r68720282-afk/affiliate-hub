@@ -1,0 +1,16 @@
+{
+  "name": "affiliate-hub",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "client": "npm --workspace client run dev",
+    "server": "npm --workspace server run dev",
+    "build": "npm --workspace client run build",
+    "start": "npm --workspace server start",
+    "install-all": "npm install --workspaces"
+  }
+}
