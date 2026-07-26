@@ -1,37 +1,77 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
-import ProductPage from "./pages/ProductPage";
+import ProductsPage from "./pages/ProductsPage";
+import ProductDetails from "./pages/ProductDetails";
+import SearchPage from "./pages/SearchPage";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 
-function ProtectedRoute({ children }) {
-  const token = localStorage.getItem("adminToken");
-
-  if (!token) {
-    return <Navigate to="/admin/login" replace />;
-  }
-
-  return children;
-}
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
+    <BrowserRouter>
 
-      <Route path="/product/:id" element={<ProductPage />} />
+      <Header />
 
-      <Route path="/admin/login" element={<AdminLogin />} />
+      <Routes>
 
-      <Route
-        path="/admin"
-        element={
-          <ProtectedRoute>
-            <AdminDashboard />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
+        <Route
+          path="/"
+          element={<HomePage />}
+        />
+
+        <Route
+          path="/products"
+          element={<ProductsPage />}
+        />
+
+        <Route
+          path="/product/:slug"
+          element={<ProductDetails />}
+        />
+
+        <Route
+          path="/search"
+          element={<SearchPage />}
+        />
+
+        <Route
+          path="/admin-login"
+          element={<AdminLogin />}
+        />
+
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="*"
+          element={
+            <div
+              style={{
+                padding: "60px",
+                textAlign: "center"
+              }}
+            >
+              <h2>404</h2>
+              <p>Page Not Found</p>
+            </div>
+          }
+        />
+
+      </Routes>
+
+      <Footer />
+
+    </BrowserRouter>
   );
 }
