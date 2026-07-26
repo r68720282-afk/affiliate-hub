@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
-import ProductsPage from "./components/product/ProductsPage";
-import ProductDetails from "./components/product/ProductDetails";
-import SearchPage from "./components/product/SearchPage";
+import ProductsPage from "./pages/ProductsPage";
+import ProductDetails from "./pages/ProductDetails";
+import SearchPage from "./pages/SearchPage";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 
@@ -14,11 +14,9 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 export default function App() {
   return (
     <BrowserRouter>
-
       <Header />
 
       <Routes>
-
         <Route
           path="/"
           element={<HomePage />}
@@ -59,7 +57,7 @@ export default function App() {
             <div
               style={{
                 padding: "60px",
-                textAlign: "center"
+                textAlign: "center",
               }}
             >
               <h2>404</h2>
@@ -67,11 +65,9 @@ export default function App() {
             </div>
           }
         />
-
       </Routes>
 
       <Footer />
-
     </BrowserRouter>
   );
 }
