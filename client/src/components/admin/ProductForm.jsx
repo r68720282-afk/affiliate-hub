@@ -1,6 +1,7 @@
+
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
-
+import ImageUploader from "./ImageUploader";
 const API = "/api/products";
 
 const CATEGORY_OPTIONS = [
@@ -547,17 +548,12 @@ export default function ProductForm({
           className="dynamicRow"
         >
 
-          <input
-            type="text"
-            placeholder="Image URL"
-            value={img}
-            onChange={(e)=>
-              updateImage(
-                index,
-                e.target.value
-              )
-            }
-          />
+       <ImageUploader
+  value={img}
+  onChange={(url) =>
+    updateImage(index, url)
+  }
+/>
 
           {product.images.length>1 && (
 
