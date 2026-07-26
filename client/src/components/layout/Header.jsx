@@ -34,6 +34,20 @@ export default function Header() {
             Search
           </NavLink>
 
+          {/* New Link */}
+          <NavLink
+            to="/deals"
+          >
+            Deals
+          </NavLink>
+
+          {/* New Link */}
+          <NavLink
+            to="/categories"
+          >
+            Categories
+          </NavLink>
+
           <NavLink
             to="/admin"
           >
