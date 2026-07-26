@@ -1,13 +1,19 @@
-import products from "../data/products.json" assert { type: "json" };
+import { getAllProducts } from "../services/productLoader.js";
 
 export const searchProducts = (req, res) => {
-  const q = (req.query.q || "").toLowerCase();
+  const products = getAllProducts();
 
-  const results = products.filter((product) =>
-    product.title.toLowerCase().includes(q)
-  );
+  const keyword = (req.query.q || "").toLowerCase();
 
-  res.status(200).json({
+  const results = products.filter((product) => {
+    return (
+      product.title.toLowerCase().includes(keyword) ||
+      product.brand.toLowerCase().includes(keyword) ||
+      product.category.toLowerCase().includes(keyword)
+    );
+  });
+
+  res.json({
     success: true,
     total: results.length,
     products: results
