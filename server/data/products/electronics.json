@@ -1,0 +1,33 @@
+[
+  {
+    "id": 2001,
+    "slug": "wireless-earbuds",
+    "title": "Wireless Bluetooth Earbuds",
+    "brand": "boAt",
+    "category": "Electronics",
+    "description": "Bluetooth 5.3 earbuds with ENC and fast charging.",
+    "images": [
+      "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=1000"
+    ],
+    "features": [
+      "Bluetooth 5.3",
+      "40 Hours Battery",
+      "Type-C Charging",
+      "Noise Cancellation"
+    ],
+    "rating": 4.7,
+    "reviews": 8654,
+    "stores": [
+      {
+        "name": "Amazon",
+        "price": "₹1,999",
+        "affiliateLink": "https://example.com/amazon-earbuds"
+      },
+      {
+        "name": "Flipkart",
+        "price": "₹1,899",
+        "affiliateLink": "https://example.com/flipkart-earbuds"
+      }
+    ]
+  }
+]
