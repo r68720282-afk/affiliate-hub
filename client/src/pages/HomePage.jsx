@@ -1,3 +1,4 @@
+import FeaturedProducts from "../components/product/FeaturedProducts";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
@@ -53,6 +54,9 @@ export default function HomePage() {
         </div>
 
       </section>
+
+      {/* Featured Products */}
+      <FeaturedProducts />
 
       <section className="homeCategories">
 
