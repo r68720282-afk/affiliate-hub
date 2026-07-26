@@ -1,389 +1,123 @@
-import { useEffect, useMemo, useState } from "react";
-import axios from "axios";
+{loading ? (
 
-const API = "/api/products";
+  <p>Loading products...</p>
 
-const PAGE_SIZE = 10;
+) : filteredProducts.length === 0 ? (
 
-const CATEGORY_OPTIONS = [
-  "All",
-  "Fashion",
-  "Electronics",
-  "Beauty",
-  "Home & Kitchen",
-  "Health",
-  "Sports",
-  "Books",
-  "Grocery",
-  "Baby"
-];
+  <div className="emptyState">
+    <h3>No Products Found</h3>
+    <p>Try changing the search or category.</p>
+  </div>
 
-export default function ProductTable({
-  onEdit
-}) {
+) : (
 
-  const [products, setProducts] = useState([]);
+  <>
+    <table>
 
-  const [loading, setLoading] = useState(true);
+      <thead>
 
-  const [search, setSearch] = useState("");
+        <tr>
+          <th>Image</th>
+          <th>Product</th>
+          <th>Brand</th>
+          <th>Category</th>
+          <th>Featured</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
 
-  const [category, setCategory] =
-    useState("All");
+      </thead>
 
-  const [page, setPage] = useState(1);
+      <tbody>
 
-  async function loadProducts() {
+        {paginatedProducts.map((product) => (
 
-    try {
+          <tr key={product.id}>
 
-      setLoading(true);
+            <td>
+              <img
+                src={product.images?.[0] || "/placeholder.png"}
+                alt={product.title}
+                className="thumb"
+              />
+            </td>
 
-      const { data } =
-        await axios.get(API);
+            <td>
+              <strong>{product.title}</strong>
+            </td>
 
-      setProducts(
-        Array.isArray(data)
-          ? data
-          : data.products || []
-      );
+            <td>{product.brand}</td>
 
-    } catch (err) {
+            <td>{product.category}</td>
 
-      console.error(err);
+            <td>
+              {product.featured ? "⭐ Yes" : "-"}
+            </td>
 
-      alert(
-        "Unable to load products."
-      );
-
-    } finally {
-
-      setLoading(false);
-
-    }
-
-  }
-
-  useEffect(() => {
-
-    loadProducts();
-
-  }, []);
-
-  async function handleDelete(id) {
-
-    const ok = window.confirm(
-      "Delete this product?"
-    );
-
-    if (!ok) return;
-
-    try {
-
-      await axios.delete(
-        `${API}/${id}`
-      );
-
-      loadProducts();
-
-    } catch (err) {
-
-      console.error(err);
-
-      alert(
-        "Delete failed."
-      );
-
-    }
-
-  }
-    const filteredProducts = useMemo(() => {
-
-    return products.filter((product) => {
-
-      const matchesSearch =
-        product.title
-          ?.toLowerCase()
-          .includes(search.toLowerCase()) ||
-
-        product.brand
-          ?.toLowerCase()
-          .includes(search.toLowerCase());
-
-      const matchesCategory =
-        category === "All"
-          ? true
-          : product.category === category;
-
-      return (
-        matchesSearch &&
-        matchesCategory
-      );
-
-    });
-
-  }, [
-    products,
-    search,
-    category
-  ]);
-
-  const totalPages = Math.max(
-    1,
-    Math.ceil(
-      filteredProducts.length /
-      PAGE_SIZE
-    )
-  );
-
-  const paginatedProducts =
-    filteredProducts.slice(
-
-      (page - 1) * PAGE_SIZE,
-
-      page * PAGE_SIZE
-
-    );
-
-  useEffect(() => {
-
-    if (page > totalPages) {
-
-      setPage(1);
-
-    }
-
-  }, [totalPages]);
-
-  return (
-
-    <div className="productTable">
-
-      <div className="tableToolbar">
-
-        <input
-          type="text"
-          placeholder="Search product..."
-          value={search}
-          onChange={(e) =>
-            setSearch(
-              e.target.value
-            )
-          }
-        />
-
-        <select
-          value={category}
-          onChange={(e) =>
-            setCategory(
-              e.target.value
-            )
-          }
-        >
-
-          {CATEGORY_OPTIONS.map(
-            (item) => (
-
-              <option
-                key={item}
-                value={item}
+            <td>
+              <span
+                className={
+                  product.active
+                    ? "activeBadge"
+                    : "inactiveBadge"
+                }
               >
+                {product.active
+                  ? "Active"
+                  : "Inactive"}
+              </span>
+            </td>
 
-                {item}
+            <td>
 
-              </option>
+              <button
+                onClick={() => onEdit(product)}
+              >
+                Edit
+              </button>
 
-            )
-          )}
+              <button
+                onClick={() => handleDelete(product.id)}
+              >
+                Delete
+              </button>
 
-        </select>
+            </td>
 
-      </div>
+          </tr>
 
-      {loading ? (
+        ))}
 
-        <p>
+      </tbody>
 
-          Loading products...
+    </table>
+        <div className="pagination">
 
-        </p>
+      <button
+        type="button"
+        disabled={page === 1}
+        onClick={() => setPage(page - 1)}
+      >
+        Previous
+      </button>
 
-      ) : (
-              filteredProducts.length === 0 ? (
+      <span>
+        Page {page} of {totalPages}
+      </span>
 
-          <div className="emptyState">
+      <button
+        type="button"
+        disabled={page === totalPages}
+        onClick={() => setPage(page + 1)}
+      >
+        Next
+      </button>
 
-            <h3>No Products Found</h3>
+    </div>
 
-            <p>
-              Try changing the search or category.
-            </p>
+  </>
 
-          </div>
-
-        ) : (
-
-          <table>
-
-            <thead>
-
-              <tr>
-
-                <th>Image</th>
-
-                <th>Product</th>
-
-                <th>Brand</th>
-
-                <th>Category</th>
-
-                <th>Featured</th>
-
-                <th>Status</th>
-
-                <th>Actions</th>
-
-              </tr>
-
-            </thead>
-
-            <tbody>
-
-              {paginatedProducts.map(
-                (product) => (
-
-                  <tr key={product.id}>
-
-                    <td>
-
-                      <img
-                        src={
-                          product.images?.[0] ||
-                          "/placeholder.png"
-                        }
-                        alt={product.title}
-                        className="thumb"
-                      />
-
-                    </td>
-
-                    <td>
-
-                      <strong>
-
-                        {product.title}
-
-                      </strong>
-
-                    </td>
-
-                    <td>
-
-                      {product.brand}
-
-                    </td>
-
-                    <td>
-
-                      {product.category}
-
-                    </td>
-
-                    <td>
-
-                      {product.featured
-                        ? "⭐ Yes"
-                        : "-"}
-
-                    </td>
-
-                    <td>
-
-                      <span
-                        className={
-                          product.active
-                            ? "activeBadge"
-                            : "inactiveBadge"
-                        }
-                      >
-
-                        {product.active
-                          ? "Active"
-                          : "Inactive"}
-
-                      </span>
-
-                    </td>
-
-                    <td>
-
-                      <button
-                        onClick={() =>
-                          onEdit(product)
-                        }
-                      >
-
-                        Edit
-
-                      </button>
-
-                      <button
-                        onClick={() =>
-                          handleDelete(
-                            product.id
-                          )
-                        }
-                      >
-
-                        Delete
-
-                      </button>
-
-                    </td>
-
-                  </tr>
-
-                )
-              )}
-
-            </tbody>
-
-          </table>
-
-        )}
-            <div className="pagination">
-
-        <button
-          type="button"
-          disabled={page === 1}
-          onClick={() =>
-            setPage(page - 1)
-          }
-        >
-          Previous
-        </button>
-
-        <span>
-
-          Page {page} of {totalPages}
-
-        </span>
-
-        <button
-          type="button"
-          disabled={
-            page === totalPages
-          }
-          onClick={() =>
-            setPage(page + 1)
-          }
-        >
-          Next
-        </button>
-
-      </div>
-
-      )}
+)}
 
     </div>
 
