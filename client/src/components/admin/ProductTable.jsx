@@ -325,10 +325,11 @@ export default function ProductTable({
           Next
         </button>
 
-          </div>
+                 </div>
 
           </>
-        )}
+        )
+      }
 
     </div>
 
