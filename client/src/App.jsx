@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
-import ProductsPage from "./pages/ProductsPage";
-import ProductDetails from "./pages/ProductDetails";
-import SearchPage from "./pages/SearchPage";
+import ProductsPage from "./components/product/ProductsPage";
+import ProductDetails from "./components/product/ProductDetails";
+import SearchPage from "./components/product/SearchPage";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 
