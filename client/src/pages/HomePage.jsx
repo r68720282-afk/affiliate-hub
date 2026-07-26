@@ -1,4 +1,4 @@
-import FeaturedProducts from "../components/product/FeaturedProducts";
+import FeaturedProducts from "../components/FeaturedProducts";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
