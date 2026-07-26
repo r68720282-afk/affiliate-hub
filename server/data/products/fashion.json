@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1001,
+    "slug": "women-cotton-kurti",
+    "title": "Women's Cotton Kurti",
+    "brand": "Generic",
+    "category": "Fashion",
+    "description": "Soft cotton kurti suitable for daily and casual wear.",
+    "images": [
+      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1000"
+    ],
+    "features": [
+      "100% Cotton",
+      "Regular Fit",
+      "Machine Wash",
+      "Comfortable Fabric"
+    ],
+    "rating": 4.5,
+    "reviews": 1234,
+    "stores": [
+      {
+        "name": "Amazon",
+        "price": "₹599",
+        "affiliateLink": "https://example.com/amazon-kurti"
+      },
+      {
+        "name": "Flipkart",
+        "price": "₹549",
+        "affiliateLink": "https://example.com/flipkart-kurti"
+      },
+      {
+        "name": "Meesho",
+        "price": "₹499",
+        "affiliateLink": "https://example.com/meesho-kurti"
+      }
+    ]
+  }
+]
