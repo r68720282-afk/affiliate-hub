@@ -1,28 +1,81 @@
-import Sidebar from "../components/admin/Sidebar";
-import Topbar from "../components/admin/Topbar";
-import DashboardCards from "../components/admin/DashboardCards";
+import { useState } from "react";
+
+import ProductForm from "../components/admin/ProductForm";
 import ProductTable from "../components/admin/ProductTable";
 
-export default function AdminDashboard(){
+export default function AdminDashboard() {
 
-return(
+  const [editProduct, setEditProduct] =
+    useState(null);
 
-<div className="dashboard">
+  const [refreshKey, setRefreshKey] =
+    useState(0);
 
-<Sidebar/>
+  function handleSuccess() {
 
-<div className="dashboardContent">
+    setEditProduct(null);
 
-<Topbar/>
+    setRefreshKey(prev => prev + 1);
 
-<DashboardCards/>
+  }
 
-<ProductTable/>
+  return (
 
-</div>
+    <div className="adminDashboard">
 
-</div>
+      <div className="dashboardHeader">
 
-);
+        <h1>
+
+          Affiliate Admin Panel
+
+        </h1>
+
+      </div>
+
+      <div className="dashboardContent">
+
+        <div className="leftPanel">
+
+          <ProductForm
+            key={
+              editProduct?.id || "new"
+            }
+            editMode={!!editProduct}
+            initialData={editProduct}
+            onSuccess={handleSuccess}
+          />
+
+          {editProduct && (
+
+            <button
+              type="button"
+              onClick={() =>
+                setEditProduct(null)
+              }
+            >
+
+              Cancel Edit
+
+            </button>
+
+          )}
+
+        </div>
+
+        <div className="rightPanel">
+
+          <ProductTable
+            key={refreshKey}
+            onEdit={setEditProduct}
+          />
+
+        </div>
+
+      </div>
+
+    </div>
+
+  );
 
 }
