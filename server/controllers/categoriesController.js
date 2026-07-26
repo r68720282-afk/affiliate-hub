@@ -1,4 +1,4 @@
-import categories from "../data/categories.json" assert { type: "json" };
+import categories from "../data/categories.json" with { type: "json" };
 
 export const getCategories = (req, res) => {
   res.json({
