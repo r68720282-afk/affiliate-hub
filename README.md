@@ -1,0 +1,2 @@
+# affiliate-hub
+AFFILATE
