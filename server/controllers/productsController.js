@@ -1,7 +1,9 @@
-import products from "../data/products.json" assert { type: "json" };
+import { getAllProducts } from "../services/productLoader.js";
 
 export const getProducts = (req, res) => {
-  res.status(200).json({
+  const products = getAllProducts();
+
+  res.json({
     success: true,
     total: products.length,
     products
@@ -9,10 +11,10 @@ export const getProducts = (req, res) => {
 };
 
 export const getProductById = (req, res) => {
-  const { id } = req.params;
+  const products = getAllProducts();
 
   const product = products.find(
-    (item) => item.id === Number(id)
+    (item) => item.id == req.params.id
   );
 
   if (!product) {
@@ -22,7 +24,7 @@ export const getProductById = (req, res) => {
     });
   }
 
-  res.status(200).json({
+  res.json({
     success: true,
     product
   });
