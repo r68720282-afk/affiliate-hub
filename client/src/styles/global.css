@@ -266,7 +266,32 @@ text-align:center;
 }
 
 /* RELATED */
+.detailsGrid{
+grid-template-columns:1fr;
+gap:30px;
+}
 
+.infoSection h1{
+font-size:28px;
+}
+
+.storeRow{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.specTable td{
+display:block;
+width:100%;
+}
+
+.specTable tr{
+display:block;
+margin-bottom:15px;
+border:1px solid #eee;
+border-radius:10px;
+overflow:hidden;
+}
 .relatedProducts{
 padding:60px 0;
 }
