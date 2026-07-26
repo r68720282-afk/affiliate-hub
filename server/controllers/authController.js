@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import { ADMIN } from "../config/admin.js";
 
-const activeTokens = new Set();
+export const activeTokens = new Set();
 
 export const login = (req, res) => {
   const { email, password } = req.body;
