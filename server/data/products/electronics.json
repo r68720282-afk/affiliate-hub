@@ -29,5 +29,235 @@
         "affiliateLink": "https://example.com/flipkart-earbuds"
       }
     ]
+  },
+  {
+    "id": 2002,
+    "slug": "apple-iphone-16-pro-max",
+    "title": "Apple iPhone 16 Pro Max",
+    "brand": "Apple",
+    "category": "Electronics",
+    "description": "Apple flagship smartphone with A18 Pro chip and advanced camera system.",
+    "images": [
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1000"
+    ],
+    "features": [
+      "A18 Pro Chip",
+      "48MP Camera",
+      "6.9-inch Display"
+    ],
+    "rating": 4.9,
+    "reviews": 18450,
+    "stores": [
+      {
+        "name": "Amazon",
+        "price": "₹1,39,999",
+        "affiliateLink": "https://example.com/iphone16-amazon"
+      },
+      {
+        "name": "Flipkart",
+        "price": "₹1,39,499",
+        "affiliateLink": "https://example.com/iphone16-flipkart"
+      }
+    ]
+  },
+  {
+    "id": 2003,
+    "slug": "samsung-galaxy-s25-ultra",
+    "title": "Samsung Galaxy S25 Ultra",
+    "brand": "Samsung",
+    "category": "Electronics",
+    "description": "Premium Android smartphone with AI-powered camera and S Pen.",
+    "images": [
+      "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=1000"
+    ],
+    "features": [
+      "200MP Camera",
+      "Snapdragon Processor",
+      "S Pen"
+    ],
+    "rating": 4.8,
+    "reviews": 15220,
+    "stores": [
+      {
+        "name": "Amazon",
+        "price": "₹1,24,999",
+        "affiliateLink": "https://example.com/s25-amazon"
+      }
+    ]
+  },
+  {
+    "id": 2004,
+    "slug": "oneplus-13",
+    "title": "OnePlus 13",
+    "brand": "OnePlus",
+    "category": "Electronics",
+    "description": "Flagship smartphone with 120Hz AMOLED display and fast charging.",
+    "images": [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=1000"
+    ],
+    "features": [
+      "120Hz AMOLED",
+      "100W Charging",
+      "Triple Camera"
+    ],
+    "rating": 4.7,
+    "reviews": 10452,
+    "stores": [
+      {
+        "name": "Amazon",
+        "price": "₹69,999",
+        "affiliateLink": "https://example.com/oneplus13"
+      }
+    ]
+  },
+  {
+    "id": 2005,
+    "slug": "google-pixel-9-pro",
+    "title": "Google Pixel 9 Pro",
+    "brand": "Google",
+    "category": "Electronics",
+    "description": "Google AI smartphone with premium camera experience.",
+    "images": [
+      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1000"
+    ],
+    "features": [
+      "Tensor Chip",
+      "AI Camera",
+      "OLED Display"
+    ],
+    "rating": 4.8,
+    "reviews": 8420,
+    "stores": [
+      {
+        "name": "Amazon",
+        "price": "₹99,999",
+        "affiliateLink": "https://example.com/pixel9pro"
+      }
+    ]
+  },
+  {
+    "id": 2006,
+    "slug": "nothing-phone-3",
+    "title": "Nothing Phone (3)",
+    "brand": "Nothing",
+    "category": "Electronics",
+    "description": "Premium smartphone featuring Glyph Interface.",
+    "images": [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=1000"
+    ],
+    "features": [
+      "Glyph Interface",
+      "120Hz OLED",
+      "Fast Charging"
+    ],
+    "rating": 4.6,
+    "reviews": 6540,
+    "stores": [
+      {
+        "name": "Flipkart",
+        "price": "₹54,999",
+        "affiliateLink": "https://example.com/nothing3"
+      }
+    ]
+  },
+  {
+    "id": 2007,
+    "slug": "sony-wh1000xm5",
+    "title": "Sony WH-1000XM5",
+    "brand": "Sony",
+    "category": "Electronics",
+    "description": "Premium wireless headphones with industry-leading noise cancellation.",
+    "images": [
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1000"
+    ],
+    "features": [
+      "ANC",
+      "30 Hours Battery",
+      "Bluetooth 5.2"
+    ],
+    "rating": 4.9,
+    "reviews": 12340,
+    "stores": [
+      {
+        "name": "Amazon",
+        "price": "₹28,999",
+        "affiliateLink": "https://example.com/sonyxm5"
+      }
+    ]
+  },
+  {
+    "id": 2008,
+    "slug": "apple-ipad-air-m3",
+    "title": "Apple iPad Air M3",
+    "brand": "Apple",
+    "category": "Electronics",
+    "description": "Powerful iPad with Apple M3 chip and Liquid Retina display.",
+    "images": [
+      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=1000"
+    ],
+    "features": [
+      "M3 Chip",
+      "11-inch Display",
+      "Apple Pencil Support"
+    ],
+    "rating": 4.9,
+    "reviews": 6321,
+    "stores": [
+      {
+        "name": "Amazon",
+        "price": "₹59,999",
+        "affiliateLink": "https://example.com/ipadair"
+      }
+    ]
+  },
+  {
+    "id": 2009,
+    "slug": "apple-watch-series-10",
+    "title": "Apple Watch Series 10",
+    "brand": "Apple",
+    "category": "Electronics",
+    "description": "Advanced smartwatch with health and fitness tracking.",
+    "images": [
+      "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=1000"
+    ],
+    "features": [
+      "GPS",
+      "ECG",
+      "Always-On Display"
+    ],
+    "rating": 4.8,
+    "reviews": 9154,
+    "stores": [
+      {
+        "name": "Amazon",
+        "price": "₹46,999",
+        "affiliateLink": "https://example.com/watch10"
+      }
+    ]
+  },
+  {
+    "id": 2010,
+    "slug": "samsung-galaxy-watch-ultra",
+    "title": "Samsung Galaxy Watch Ultra",
+    "brand": "Samsung",
+    "category": "Electronics",
+    "description": "Premium smartwatch with AMOLED display and advanced health tracking.",
+    "images": [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1000"
+    ],
+    "features": [
+      "AMOLED Display",
+      "GPS",
+      "Heart Rate Monitor"
+    ],
+    "rating": 4.7,
+    "reviews": 7214,
+    "stores": [
+      {
+        "name": "Amazon",
+        "price": "₹54,999",
+        "affiliateLink": "https://example.com/watchultra"
+      }
+    ]
   }
 ]
