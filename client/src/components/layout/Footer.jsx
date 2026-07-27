@@ -3,19 +3,26 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <footer className="siteFooter">
+
       <div className="container">
 
         <div className="footerTop">
 
           <div className="footerColumn">
-            <h2>AffiliateHub</h2>
-            <p>
+
+            <h2 className="footerLogo">
+              AffiliateHub
+            </h2>
+
+            <p className="footerAbout">
               Discover the best affiliate products, compare prices,
               and find the latest deals from trusted online stores.
             </p>
+
           </div>
 
           <div className="footerColumn">
+
             <h3>Quick Links</h3>
 
             <ul>
@@ -29,6 +36,7 @@ export default function Footer() {
           </div>
 
           <div className="footerColumn">
+
             <h3>Categories</h3>
 
             <ul>
@@ -42,28 +50,41 @@ export default function Footer() {
           </div>
 
           <div className="footerColumn">
+
             <h3>Follow Us</h3>
 
-            <ul>
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Instagram</a></li>
-              <li><a href="#">YouTube</a></li>
-              <li><a href="#">X (Twitter)</a></li>
-            </ul>
+            <div className="socialLinks">
+
+              <a href="#" aria-label="Facebook">
+                Facebook
+              </a>
+
+              <a href="#" aria-label="Instagram">
+                Instagram
+              </a>
+
+              <a href="#" aria-label="YouTube">
+                YouTube
+              </a>
+
+              <a href="#" aria-label="X">
+                X
+              </a>
+
+            </div>
 
           </div>
 
         </div>
 
-        <hr />
-
         <div className="footerBottom">
 
           <p>
-            © {new Date().getFullYear()} AffiliateHub. All Rights Reserved.
+            © {new Date().getFullYear()} AffiliateHub.
+            All Rights Reserved.
           </p>
 
-          <p>
+          <p className="footerDisclosure">
             Affiliate Disclosure: Some links on this website are affiliate
             links. We may earn a commission at no extra cost to you if you
             purchase through these links.
@@ -72,6 +93,7 @@ export default function Footer() {
         </div>
 
       </div>
+
     </footer>
   );
 }
