@@ -7,6 +7,7 @@ import CategoryManager from "../components/admin/CategoryManager";
 import ImportCSV from "../components/admin/ImportCSV";
 
 export default function AdminDashboard() {
+
   const [editProduct, setEditProduct] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
 
@@ -16,65 +17,112 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="adminDashboard">
+
+    <div className="adminPage">
 
       {/* Header */}
-      <div className="dashboardHeader">
-        <h1>Affiliate Admin Panel</h1>
-        <p>Manage Products, Categories and CSV Imports</p>
+
+      <div className="adminHeader">
+
+        <div>
+
+          <h1>Affiliate Hub Admin</h1>
+
+          <p>
+            Manage Products, Categories and CSV Imports
+            from one dashboard.
+          </p>
+
+        </div>
+
       </div>
 
-      {/* Dashboard Summary */}
+      {/* Dashboard Cards */}
+
       <DashboardCards />
 
-      {/* Product Form + Product Table */}
+      {/* Product Section */}
+
       <div className="dashboardContent">
+
+        {/* Left */}
 
         <div className="leftPanel">
 
-          <ProductForm
-            key={editProduct?.id || "new"}
-            editMode={!!editProduct}
-            initialData={editProduct}
-            onSuccess={handleSuccess}
-          />
+          <div className="adminCard">
 
-          {editProduct && (
-            <button
-              className="cancelBtn"
-              type="button"
-              onClick={() => setEditProduct(null)}
-            >
-              Cancel Edit
-            </button>
-          )}
+            <h2>
+              {editProduct
+                ? "✏ Edit Product"
+                : "➕ Add Product"}
+            </h2>
+
+            <ProductForm
+              key={editProduct?.id || "new"}
+              editMode={!!editProduct}
+              initialData={editProduct}
+              onSuccess={handleSuccess}
+            />
+
+            {editProduct && (
+
+              <button
+                className="dangerBtn mt20"
+                type="button"
+                onClick={() => setEditProduct(null)}
+              >
+                Cancel Edit
+              </button>
+
+            )}
+
+          </div>
 
         </div>
 
+        {/* Right */}
+
         <div className="rightPanel">
 
-          <ProductTable
-            key={refreshKey}
-            onEdit={setEditProduct}
-          />
+          <div className="adminCard">
+
+            <h2>📦 Product List</h2>
+
+            <ProductTable
+              key={refreshKey}
+              onEdit={setEditProduct}
+            />
+
+          </div>
 
         </div>
 
       </div>
 
-      {/* Category + CSV Section */}
+      {/* Bottom */}
+
       <div className="bottomSection">
 
-        <div className="bottomCard">
+        <div className="adminCard">
+
+          <h2>🗂 Category Management</h2>
+
           <CategoryManager />
+
         </div>
 
-        <div className="bottomCard">
+        <div className="adminCard">
+
+          <h2>📂 CSV Import</h2>
+
           <ImportCSV />
+
         </div>
 
       </div>
 
     </div>
+
   );
+
 }
