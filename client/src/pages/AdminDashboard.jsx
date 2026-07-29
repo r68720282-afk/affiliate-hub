@@ -19,21 +19,15 @@ export default function AdminDashboard() {
     <div className="adminDashboard">
 
       {/* Header */}
-
       <div className="dashboardHeader">
         <h1>Affiliate Admin Panel</h1>
-
-        <p>
-          Manage Products, Categories and CSV Imports
-        </p>
+        <p>Manage Products, Categories and CSV Imports</p>
       </div>
 
-      {/* Dashboard Cards */}
-
+      {/* Dashboard Summary */}
       <DashboardCards />
 
-      {/* Product Section */}
-
+      {/* Product Form + Product Table */}
       <div className="dashboardContent">
 
         <div className="leftPanel">
@@ -68,15 +62,14 @@ export default function AdminDashboard() {
 
       </div>
 
-      {/* Bottom Section */}
-
+      {/* Category + CSV Section */}
       <div className="bottomSection">
 
-        <div className="categorySection">
+        <div className="bottomCard">
           <CategoryManager />
         </div>
 
-        <div className="csvSection">
+        <div className="bottomCard">
           <ImportCSV />
         </div>
 
