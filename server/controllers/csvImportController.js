@@ -1,16 +1,22 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { importCSV as parseCSV } from "../services/csvImporter.js";
+import { parseCSV } from "../services/csvImporter.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Apne products.json ka path yahan update karna agar alag ho
 const PRODUCTS_FILE = path.join(
   __dirname,
   "../data/products/products.json"
 );
+
+const createSlug = (text = "") =>
+  text
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
 export const uploadCSV = async (req, res) => {
   try {
@@ -33,11 +39,35 @@ export const uploadCSV = async (req, res) => {
       }
     }
 
-    const existingSlugs = new Set(products.map(p => p.slug));
-
-    const newProducts = importedProducts.filter(
-      p => !existingSlugs.has(p.slug)
+    const existingSlugs = new Set(
+      products.map((p) => p.slug)
     );
+
+    const newProducts = [];
+
+    for (const product of importedProducts) {
+
+      const slug = createSlug(product.title);
+
+      if (existingSlugs.has(slug)) {
+        continue;
+      }
+
+      existingSlugs.add(slug);
+
+      newProducts.push({
+        id: Date.now() + Math.floor(Math.random() * 10000),
+        slug,
+        title: product.title,
+        category: product.category,
+        brand: product.brand,
+        price: product.price,
+        image: product.image,
+        affiliateLink: product.affiliateLink,
+        description: product.description,
+        createdAt: new Date().toISOString()
+      });
+    }
 
     products.push(...newProducts);
 
@@ -46,8 +76,9 @@ export const uploadCSV = async (req, res) => {
       JSON.stringify(products, null, 2)
     );
 
-    // Uploaded CSV delete
-    fs.unlinkSync(req.file.path);
+    if (fs.existsSync(req.file.path)) {
+      fs.unlinkSync(req.file.path);
+    }
 
     return res.status(200).json({
       success: true,
@@ -58,11 +89,13 @@ export const uploadCSV = async (req, res) => {
     });
 
   } catch (error) {
+
     console.error(error);
 
     return res.status(500).json({
       success: false,
       message: error.message
     });
+
   }
 };
