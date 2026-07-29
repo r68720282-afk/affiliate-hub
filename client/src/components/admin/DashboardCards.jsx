@@ -9,8 +9,11 @@ export default function DashboardCards() {
 
     axios
       .get("/api/products")
-      .then(res => {
-        setCount(res.data.total);
+      .then((res) => {
+        setCount(res.data.total || 0);
+      })
+      .catch(() => {
+        setCount(0);
       });
 
   }, []);
@@ -20,27 +23,23 @@ export default function DashboardCards() {
     <div className="dashboardCards">
 
       <div className="card">
-
         <h3>Total Products</h3>
-
         <h1>{count}</h1>
-
       </div>
 
       <div className="card">
-
         <h3>Categories</h3>
-
         <h1>9</h1>
-
       </div>
 
       <div className="card">
+        <h3>CSV Imports</h3>
+        <h1>0</h1>
+      </div>
 
-        <h3>Admin</h3>
-
-        <h1>1</h1>
-
+      <div className="card">
+        <h3>Total Clicks</h3>
+        <h1>0</h1>
       </div>
 
     </div>
