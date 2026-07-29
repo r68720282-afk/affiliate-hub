@@ -1,29 +1,57 @@
+import { NavLink } from "react-router-dom";
+
 export default function Sidebar() {
-
   return (
-
     <aside className="sidebar">
 
       <h2>Affiliate Hub</h2>
 
       <ul>
 
-        <li>Dashboard</li>
+        <li>
+          <NavLink to="/admin">
+            Dashboard
+          </NavLink>
+        </li>
 
-        <li>Products</li>
+        <li>
+          <NavLink to="/admin/products">
+            Products
+          </NavLink>
+        </li>
 
-        <li>Categories</li>
+        <li>
+          <NavLink to="/admin/categories">
+            Categories
+          </NavLink>
+        </li>
 
-        <li>Affiliate Import</li>
+        <li>
+          <NavLink to="/admin/csv-import">
+            CSV Import
+          </NavLink>
+        </li>
 
-        <li>Analytics</li>
+        <li>
+          <NavLink to="/admin/import">
+            Affiliate Import
+          </NavLink>
+        </li>
 
-        <li>Settings</li>
+        <li>
+          <NavLink to="/admin/analytics">
+            Analytics
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/admin/settings">
+            Settings
+          </NavLink>
+        </li>
 
       </ul>
 
     </aside>
-
   );
-
 }
