@@ -6,7 +6,7 @@ import ProductDetails from "./pages/ProductDetails";
 import SearchPage from "./pages/SearchPage";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
-
+import ImportCSV from "./components/admin/ImportCSV";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -50,7 +50,14 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
+        <Route
+  path="/admin/csv-import"
+  element={
+    <ProtectedRoute>
+      <ImportCSV />
+    </ProtectedRoute>
+  }
+/>
         <Route
           path="*"
           element={
