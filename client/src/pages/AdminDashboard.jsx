@@ -1,64 +1,58 @@
 import { useState } from "react";
 
+import DashboardCards from "../components/admin/DashboardCards";
 import ProductForm from "../components/admin/ProductForm";
 import ProductTable from "../components/admin/ProductTable";
+import CategoryManager from "../components/admin/CategoryManager";
+import ImportCSV from "../components/admin/ImportCSV";
 
 export default function AdminDashboard() {
-
-  const [editProduct, setEditProduct] =
-    useState(null);
-
-  const [refreshKey, setRefreshKey] =
-    useState(0);
+  const [editProduct, setEditProduct] = useState(null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   function handleSuccess() {
-
     setEditProduct(null);
-
-    setRefreshKey(prev => prev + 1);
-
+    setRefreshKey((prev) => prev + 1);
   }
 
   return (
-
     <div className="adminDashboard">
 
+      {/* Header */}
+
       <div className="dashboardHeader">
+        <h1>Affiliate Admin Panel</h1>
 
-        <h1>
-
-          Affiliate Admin Panel
-
-        </h1>
-
+        <p>
+          Manage Products, Categories and CSV Imports
+        </p>
       </div>
+
+      {/* Dashboard Cards */}
+
+      <DashboardCards />
+
+      {/* Product Section */}
 
       <div className="dashboardContent">
 
         <div className="leftPanel">
 
           <ProductForm
-            key={
-              editProduct?.id || "new"
-            }
+            key={editProduct?.id || "new"}
             editMode={!!editProduct}
             initialData={editProduct}
             onSuccess={handleSuccess}
           />
 
           {editProduct && (
-
             <button
+              className="cancelBtn"
               type="button"
-              onClick={() =>
-                setEditProduct(null)
-              }
+              onClick={() => setEditProduct(null)}
             >
-
               Cancel Edit
-
             </button>
-
           )}
 
         </div>
@@ -74,8 +68,20 @@ export default function AdminDashboard() {
 
       </div>
 
+      {/* Bottom Section */}
+
+      <div className="bottomSection">
+
+        <div className="categorySection">
+          <CategoryManager />
+        </div>
+
+        <div className="csvSection">
+          <ImportCSV />
+        </div>
+
+      </div>
+
     </div>
-
   );
-
 }
