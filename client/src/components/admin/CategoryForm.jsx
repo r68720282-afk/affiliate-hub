@@ -25,7 +25,9 @@ export default function CategoryForm({
 
     e.preventDefault();
 
-    if (!name.trim()) {
+    const categoryName = name.trim();
+
+    if (!categoryName) {
       alert("Category name is required.");
       return;
     }
@@ -39,14 +41,14 @@ export default function CategoryForm({
         await axios.put(
           `${API}/${editCategory.id}`,
           {
-            name: name.trim()
+            name: categoryName
           }
         );
 
       } else {
 
         await axios.post(API, {
-          name: name.trim()
+          name: categoryName
         });
 
       }
@@ -55,9 +57,9 @@ export default function CategoryForm({
 
       onSuccess();
 
-    } catch (err) {
+    } catch (error) {
 
-      console.error(err);
+      console.error(error);
 
       alert("Unable to save category.");
 
@@ -76,18 +78,24 @@ export default function CategoryForm({
       onSubmit={handleSubmit}
     >
 
-      <div className="categoryFormRow">
+      <label className="formLabel">
+        Category Name
+      </label>
 
-        <input
-          type="text"
-          placeholder="Category Name"
-          value={name}
-          onChange={(e) =>
-            setName(e.target.value)
-          }
-        />
+      <input
+        className="formInput"
+        type="text"
+        placeholder="e.g. Electronics"
+        value={name}
+        onChange={(e) =>
+          setName(e.target.value)
+        }
+      />
+
+      <div className="formActions">
 
         <button
+          className="primaryBtn"
           type="submit"
           disabled={loading}
         >
@@ -95,7 +103,7 @@ export default function CategoryForm({
           {loading
             ? "Saving..."
             : editCategory
-              ? "Update"
+              ? "Update Category"
               : "Add Category"}
 
         </button>
