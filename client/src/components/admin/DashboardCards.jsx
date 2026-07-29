@@ -3,43 +3,85 @@ import axios from "axios";
 
 export default function DashboardCards() {
 
-  const [count, setCount] = useState(0);
+  const [stats, setStats] = useState({
+    totalProducts: 0,
+    totalCategories: 0,
+    featuredProducts: 0,
+    activeProducts: 0,
+  });
 
   useEffect(() => {
+    loadDashboard();
+  }, []);
 
-    axios
-      .get("/api/products")
-      .then((res) => {
-        setCount(res.data.total || 0);
-      })
-      .catch(() => {
-        setCount(0);
+  async function loadDashboard() {
+    try {
+
+      const [productsRes, categoriesRes] = await Promise.all([
+        axios.get("/api/products"),
+        axios.get("/api/categories"),
+      ]);
+
+      const products = Array.isArray(productsRes.data)
+        ? productsRes.data
+        : productsRes.data.products || [];
+
+      const categories = Array.isArray(categoriesRes.data)
+        ? categoriesRes.data
+        : [];
+
+      setStats({
+        totalProducts: products.length,
+        totalCategories: categories.length,
+        featuredProducts: products.filter(
+          (item) => item.featured
+        ).length,
+        activeProducts: products.filter(
+          (item) => item.active
+        ).length,
       });
 
-  }, []);
+    } catch (error) {
+
+      console.error(error);
+
+    }
+  }
 
   return (
 
-    <div className="dashboardCards">
+    <div className="dashboardGrid">
 
-      <div className="card">
-        <h3>Total Products</h3>
-        <h1>{count}</h1>
+      <div className="dashboardCard">
+
+        <h3>📦 Total Products</h3>
+
+        <h2>{stats.totalProducts}</h2>
+
       </div>
 
-      <div className="card">
-        <h3>Categories</h3>
-        <h1>9</h1>
+      <div className="dashboardCard">
+
+        <h3>🗂 Categories</h3>
+
+        <h2>{stats.totalCategories}</h2>
+
       </div>
 
-      <div className="card">
-        <h3>CSV Imports</h3>
-        <h1>0</h1>
+      <div className="dashboardCard">
+
+        <h3>⭐ Featured Products</h3>
+
+        <h2>{stats.featuredProducts}</h2>
+
       </div>
 
-      <div className="card">
-        <h3>Total Clicks</h3>
-        <h1>0</h1>
+      <div className="dashboardCard">
+
+        <h3>🟢 Active Products</h3>
+
+        <h2>{stats.activeProducts}</h2>
+
       </div>
 
     </div>
