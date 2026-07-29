@@ -10,7 +10,7 @@ import searchRoutes from "./routes/search.js";
 import importRoutes from "./routes/import.js";
 import authRoutes from "./routes/auth.js";
 import uploadRoutes from "./routes/upload.js";
-
+import csvImportRoutes from "./routes/csvImportRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -41,6 +41,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/search", searchRoutes);
 app.use("/api/import", importRoutes);
+app.use("/api/csv", csvImportRoutes);
 app.use("/api/upload", uploadRoutes);
 
 const PORT = process.env.PORT || 5000;
