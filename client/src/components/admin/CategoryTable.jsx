@@ -11,7 +11,7 @@ export default function CategoryTable({
   async function handleDelete(id) {
 
     const confirmDelete = window.confirm(
-      "Delete this category?"
+      "Are you sure you want to delete this category?"
     );
 
     if (!confirmDelete) return;
@@ -22,12 +22,11 @@ export default function CategoryTable({
 
       onRefresh();
 
-    } catch (err) {
+    } catch (error) {
 
-      console.error(err);
+      console.error(error);
 
       alert("Unable to delete category.");
-
     }
 
   }
@@ -43,9 +42,8 @@ export default function CategoryTable({
           <tr>
 
             <th>#</th>
-
             <th>Category</th>
-
+            <th>Status</th>
             <th>Actions</th>
 
           </tr>
@@ -59,14 +57,10 @@ export default function CategoryTable({
             <tr>
 
               <td
-                colSpan="3"
-                style={{
-                  textAlign: "center"
-                }}
+                colSpan="4"
+                className="emptyTable"
               >
-
-                No Categories Found
-
+                📂 No Categories Found
               </td>
 
             </tr>
@@ -79,29 +73,43 @@ export default function CategoryTable({
 
                 <td>{index + 1}</td>
 
-                <td>{item.name}</td>
+                <td>
+
+                  <span className="categoryBadge">
+                    {item.name}
+                  </span>
+
+                </td>
 
                 <td>
 
-                  <button
-                    type="button"
-                    className="editBtn"
-                    onClick={() =>
-                      onEdit(item)
-                    }
-                  >
-                    Edit
-                  </button>
+                  <span className="activeBadge">
+                    Active
+                  </span>
 
-                  <button
-                    type="button"
-                    className="deleteBtn"
-                    onClick={() =>
-                      handleDelete(item.id)
-                    }
-                  >
-                    Delete
-                  </button>
+                </td>
+
+                <td>
+
+                  <div className="actionButtons">
+
+                    <button
+                      type="button"
+                      className="editBtn"
+                      onClick={() => onEdit(item)}
+                    >
+                      ✏ Edit
+                    </button>
+
+                    <button
+                      type="button"
+                      className="deleteBtn"
+                      onClick={() => handleDelete(item.id)}
+                    >
+                      🗑 Delete
+                    </button>
+
+                  </div>
 
                 </td>
 
