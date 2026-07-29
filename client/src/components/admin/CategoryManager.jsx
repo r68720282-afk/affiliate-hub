@@ -15,13 +15,15 @@ export default function CategoryManager() {
 
     try {
 
-      const res = await axios.get(API);
+      const { data } = await axios.get(API);
 
-      setCategories(res.data || []);
+      setCategories(Array.isArray(data) ? data : []);
 
-    } catch (err) {
+    } catch (error) {
 
-      console.error(err);
+      console.error(error);
+
+      setCategories([]);
 
     }
 
@@ -47,24 +49,49 @@ export default function CategoryManager() {
 
       <div className="sectionHeader">
 
-        <h2>Category Management</h2>
+        <div>
 
-        <p>
-          Add, edit and delete product categories.
-        </p>
+          <h2>🗂 Category Management</h2>
+
+          <p>
+            Create, edit and organize your product
+            categories.
+          </p>
+
+        </div>
 
       </div>
 
-      <CategoryForm
-        editCategory={editCategory}
-        onSuccess={handleSuccess}
-      />
+      <div className="categoryContent">
 
-      <CategoryTable
-        categories={categories}
-        onEdit={setEditCategory}
-        onRefresh={loadCategories}
-      />
+        <div className="categoryFormCard">
+
+          <h3>
+            {editCategory
+              ? "✏ Edit Category"
+              : "➕ Add Category"}
+          </h3>
+
+          <CategoryForm
+            editCategory={editCategory}
+            onSuccess={handleSuccess}
+          />
+
+        </div>
+
+        <div className="categoryTableCard">
+
+          <h3>📋 Category List</h3>
+
+          <CategoryTable
+            categories={categories}
+            onEdit={setEditCategory}
+            onRefresh={loadCategories}
+          />
+
+        </div>
+
+      </div>
 
     </div>
 
