@@ -5,7 +5,7 @@ const API = "/api/categories";
 
 export default function CategoryForm({
   editCategory,
-  onSuccess
+  onSuccess,
 }) {
 
   const [name, setName] = useState("");
@@ -14,9 +14,13 @@ export default function CategoryForm({
   useEffect(() => {
 
     if (editCategory) {
-      setName(editCategory.name);
+
+      setName(editCategory.name || "");
+
     } else {
+
       setName("");
+
     }
 
   }, [editCategory]);
@@ -28,8 +32,11 @@ export default function CategoryForm({
     const categoryName = name.trim();
 
     if (!categoryName) {
+
       alert("Category name is required.");
+
       return;
+
     }
 
     setLoading(true);
@@ -39,23 +46,23 @@ export default function CategoryForm({
       if (editCategory) {
 
         await axios.put(
-          `${API}/${editCategory.id}`,
+          `${API}/${editCategory.id || editCategory._id}`,
           {
-            name: categoryName
+            name: categoryName,
           }
         );
 
       } else {
 
         await axios.post(API, {
-          name: categoryName
+          name: categoryName,
         });
 
       }
 
       setName("");
 
-      onSuccess();
+      onSuccess?.();
 
     } catch (error) {
 
@@ -79,7 +86,9 @@ export default function CategoryForm({
     >
 
       <label className="formLabel">
+
         Category Name
+
       </label>
 
       <input
@@ -87,6 +96,7 @@ export default function CategoryForm({
         type="text"
         placeholder="e.g. Electronics"
         value={name}
+        maxLength={60}
         onChange={(e) =>
           setName(e.target.value)
         }
@@ -107,6 +117,20 @@ export default function CategoryForm({
               : "Add Category"}
 
         </button>
+
+        {editCategory && (
+
+          <button
+            type="button"
+            className="secondaryBtn"
+            onClick={() => setName("")}
+          >
+
+            Clear
+
+          </button>
+
+        )}
 
       </div>
 
