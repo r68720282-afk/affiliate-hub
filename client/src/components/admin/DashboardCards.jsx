@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function DashboardCards() {
+
   const [stats, setStats] = useState({
     totalProducts: 0,
     totalCategories: 0,
@@ -9,12 +10,16 @@ export default function DashboardCards() {
     activeProducts: 0,
   });
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     loadDashboard();
   }, []);
 
   async function loadDashboard() {
+
     try {
+
       const [productsRes, categoriesRes] = await Promise.all([
         axios.get("/api/products"),
         axios.get("/api/categories"),
@@ -22,11 +27,11 @@ export default function DashboardCards() {
 
       const products = Array.isArray(productsRes.data)
         ? productsRes.data
-        : productsRes.data.products || [];
+        : productsRes.data?.products || [];
 
       const categories = Array.isArray(categoriesRes.data)
         ? categoriesRes.data
-        : [];
+        : categoriesRes.data?.categories || [];
 
       setStats({
         totalProducts: products.length,
@@ -38,13 +43,23 @@ export default function DashboardCards() {
           (item) => item.active
         ).length,
       });
+
     } catch (error) {
-      console.error(error);
+
+      console.error("Dashboard Error:", error);
+
+    } finally {
+
+      setLoading(false);
+
     }
+
   }
 
   const cards = [
+
     {
+      id: 1,
       title: "Total Products",
       value: stats.totalProducts,
       icon: "📦",
@@ -52,15 +67,19 @@ export default function DashboardCards() {
       change: "+12%",
       text: "Available Products",
     },
+
     {
+      id: 2,
       title: "Categories",
       value: stats.totalCategories,
-      icon: "🗂",
+      icon: "🗂️",
       color: "green",
       change: "+4%",
       text: "Product Categories",
     },
+
     {
+      id: 3,
       title: "Featured",
       value: stats.featuredProducts,
       icon: "⭐",
@@ -68,7 +87,9 @@ export default function DashboardCards() {
       change: "+8%",
       text: "Featured Products",
     },
+
     {
+      id: 4,
       title: "Active",
       value: stats.activeProducts,
       icon: "🟢",
@@ -76,33 +97,64 @@ export default function DashboardCards() {
       change: "+15%",
       text: "Currently Active",
     },
+
   ];
 
+  if (loading) {
+
+    return (
+      <div className="loading">
+        Loading Dashboard...
+      </div>
+    );
+
+  }
+
   return (
+
     <div className="dashboardGrid">
-      {cards.map((card, index) => (
+
+      {cards.map((card) => (
+
         <div
+          key={card.id}
           className={`dashboardCard ${card.color}`}
-          key={index}
         >
+
           <div className="cardTop">
+
             <div className="cardIcon">
               {card.icon}
             </div>
 
             <div className="cardInfo">
-              <h4>{card.title}</h4>
-              <p>{card.text}</p>
+
+              <h4>
+                {card.title}
+              </h4>
+
+              <p>
+                {card.text}
+              </p>
+
             </div>
+
           </div>
 
-          <h2>{card.value}</h2>
+          <h2>
+            {card.value.toLocaleString()}
+          </h2>
 
           <span className="cardTrend">
             ▲ {card.change} this month
           </span>
+
         </div>
+
       ))}
+
     </div>
+
   );
+
 }
