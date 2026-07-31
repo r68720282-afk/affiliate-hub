@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
@@ -12,11 +12,20 @@ import Footer from "./components/layout/Footer";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 export default function App() {
+
+  const location = useLocation();
+
+  const isAdminPage =
+    location.pathname.startsWith("/admin");
+
   return (
+
     <>
-      <Header />
+
+      {!isAdminPage && <Header />}
 
       <Routes>
+
         <Route
           path="/"
           element={<HomePage />}
@@ -50,21 +59,23 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
-  path="/admin/csv-import"
-  element={
-    <ProtectedRoute>
-      <ImportCSV />
-    </ProtectedRoute>
-  }
-/>
+          path="/admin/csv-import"
+          element={
+            <ProtectedRoute>
+              <ImportCSV />
+            </ProtectedRoute>
+          }
+        />
+
         <Route
           path="*"
           element={
             <div
               style={{
-                padding: "60px",
-                textAlign: "center",
+                padding:60,
+                textAlign:"center"
               }}
             >
               <h2>404</h2>
@@ -72,9 +83,13 @@ export default function App() {
             </div>
           }
         />
+
       </Routes>
 
-      <Footer />
+      {!isAdminPage && <Footer />}
+
     </>
+
   );
+
 }
