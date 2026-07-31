@@ -1,76 +1,133 @@
-import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function AdminLayout({ children }) {
-
   const navigate = useNavigate();
-
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   function logout() {
-
     localStorage.removeItem("adminToken");
-
     navigate("/admin-login");
-
   }
 
-  return (
+  const menuItems = [
+    {
+      title: "Dashboard",
+      icon: "📊",
+      path: "/admin",
+    },
+    {
+      title: "Products",
+      icon: "📦",
+      path: "/admin",
+    },
+    {
+      title: "Categories",
+      icon: "🗂",
+      path: "/admin",
+    },
+    {
+      title: "CSV Import",
+      icon: "📂",
+      path: "/admin/csv-import",
+    },
+    {
+      title: "Analytics",
+      icon: "📈",
+      path: "/admin",
+    },
+    {
+      title: "Settings",
+      icon: "⚙️",
+      path: "/admin",
+    },
+  ];
 
+  return (
     <div className="adminLayout">
 
       {/* Sidebar */}
 
       <aside
-        className={
-          sidebarOpen
-            ? "adminSidebar open"
-            : "adminSidebar"
-        }
+        className={`adminSidebar ${
+          sidebarOpen ? "open" : "collapsed"
+        }`}
       >
 
         <div className="sidebarLogo">
 
-          <h2>Affiliate Hub</h2>
+          <div className="logoCircle">
+            AH
+          </div>
+
+          {sidebarOpen && (
+
+            <div className="logoText">
+
+              <h2>Affiliate Hub</h2>
+
+              <span>Admin Panel</span>
+
+            </div>
+
+          )}
 
         </div>
 
         <nav className="sidebarMenu">
 
-          <NavLink to="/admin">
+          {menuItems.map((item) => (
 
-            📊 Dashboard
+            <NavLink
+              key={item.title}
+              to={item.path}
+              end={item.path === "/admin"}
+            >
 
-          </NavLink>
+              <span className="menuIcon">
+                {item.icon}
+              </span>
 
-          <NavLink to="/admin">
+              {sidebarOpen && (
 
-            📦 Products
+                <span className="menuTitle">
 
-          </NavLink>
+                  {item.title}
 
-          <NavLink to="/admin">
+                </span>
 
-            🗂 Categories
+              )}
 
-          </NavLink>
+            </NavLink>
 
-          <NavLink to="/admin/csv-import">
+          ))}
 
-            📂 CSV Import
+        </nav>
 
-          </NavLink>
+        <div className="sidebarBottom">
 
           <button
             className="logoutBtn"
             onClick={logout}
           >
 
-            🚪 Logout
+            <span className="menuIcon">
+              🚪
+            </span>
+
+            {sidebarOpen && (
+
+              <span>
+
+                Logout
+
+              </span>
+
+            )}
 
           </button>
 
-        </nav>
+        </div>
 
       </aside>
 
@@ -80,26 +137,75 @@ export default function AdminLayout({ children }) {
 
         <header className="adminTopbar">
 
-          <button
-            className="menuBtn"
-            onClick={() =>
-              setSidebarOpen(!sidebarOpen)
-            }
-          >
+          <div className="topbarLeft">
 
-            ☰
+            <button
+              className="menuBtn"
+              onClick={() =>
+                setSidebarOpen(!sidebarOpen)
+              }
+            >
+              ☰
+            </button>
 
-          </button>
+            <div className="searchBox">
 
-          <h2>
+              <span>🔍</span>
 
-            Affiliate Admin Panel
+              <input
+                type="text"
+                placeholder="Search products..."
+              />
 
-          </h2>
+            </div>
 
-          <div className="adminUser">
+          </div>
 
-            👤 Admin
+          <div className="topbarRight">
+
+            <button className="iconBtn">
+
+              🔔
+
+              <span className="notificationBadge">
+
+                3
+
+              </span>
+
+            </button>
+
+            <button className="iconBtn">
+
+              ⚙️
+
+            </button>
+
+            <div className="adminProfile">
+
+              <div className="avatar">
+
+                A
+
+              </div>
+
+              <div>
+
+                <strong>
+
+                  Admin
+
+                </strong>
+
+                <small>
+
+                  Super Admin
+
+                </small>
+
+              </div>
+
+            </div>
 
           </div>
 
@@ -114,7 +220,5 @@ export default function AdminLayout({ children }) {
       </div>
 
     </div>
-
   );
-
 }
