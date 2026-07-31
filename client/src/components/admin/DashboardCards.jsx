@@ -20,6 +20,8 @@ export default function DashboardCards() {
 
     try {
 
+      setLoading(true);
+
       const [productsRes, categoriesRes] = await Promise.all([
         axios.get("/api/products"),
         axios.get("/api/categories"),
@@ -48,6 +50,13 @@ export default function DashboardCards() {
 
       console.error("Dashboard Error:", error);
 
+      setStats({
+        totalProducts: 0,
+        totalCategories: 0,
+        featuredProducts: 0,
+        activeProducts: 0,
+      });
+
     } finally {
 
       setLoading(false);
@@ -57,47 +66,38 @@ export default function DashboardCards() {
   }
 
   const cards = [
-
     {
       id: 1,
       title: "Total Products",
       value: stats.totalProducts,
       icon: "📦",
       color: "blue",
-      change: "+12%",
       text: "Available Products",
     },
-
     {
       id: 2,
       title: "Categories",
       value: stats.totalCategories,
       icon: "🗂️",
       color: "green",
-      change: "+4%",
       text: "Product Categories",
     },
-
     {
       id: 3,
       title: "Featured",
       value: stats.featuredProducts,
       icon: "⭐",
       color: "orange",
-      change: "+8%",
       text: "Featured Products",
     },
-
     {
       id: 4,
       title: "Active",
       value: stats.activeProducts,
       icon: "🟢",
       color: "purple",
-      change: "+15%",
       text: "Currently Active",
     },
-
   ];
 
   if (loading) {
@@ -129,24 +129,20 @@ export default function DashboardCards() {
 
             <div className="cardInfo">
 
-              <h4>
-                {card.title}
-              </h4>
+              <h4>{card.title}</h4>
 
-              <p>
-                {card.text}
-              </p>
+              <p>{card.text}</p>
 
             </div>
 
           </div>
 
-          <h2>
-            {card.value.toLocaleString()}
-          </h2>
+          <h2>{card.value.toLocaleString()}</h2>
 
           <span className="cardTrend">
-            ▲ {card.change} this month
+
+            Live Data
+
           </span>
 
         </div>
