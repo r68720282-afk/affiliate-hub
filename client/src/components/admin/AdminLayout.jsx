@@ -2,56 +2,69 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 export default function AdminLayout({ children }) {
+
   const navigate = useNavigate();
+
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   function logout() {
+
     localStorage.removeItem("adminToken");
-    navigate("/admin-login");
+
+    navigate("/admin-login", {
+      replace: true,
+    });
+
   }
 
   const menuItems = [
+
     {
       title: "Dashboard",
       icon: "📊",
       path: "/admin",
     },
+
     {
       title: "Products",
       icon: "📦",
-      path: "/admin",
+      path: "/admin/products",
     },
+
     {
       title: "Categories",
-      icon: "🗂",
-      path: "/admin",
+      icon: "🗂️",
+      path: "/admin/categories",
     },
+
     {
       title: "CSV Import",
       icon: "📂",
       path: "/admin/csv-import",
     },
+
     {
       title: "Analytics",
       icon: "📈",
-      path: "/admin",
+      path: "/admin/analytics",
     },
+
     {
       title: "Settings",
       icon: "⚙️",
-      path: "/admin",
+      path: "/admin/settings",
     },
+
   ];
 
   return (
+
     <div className="adminLayout">
 
       {/* Sidebar */}
 
       <aside
-        className={`adminSidebar ${
-          sidebarOpen ? "open" : "collapsed"
-        }`}
+        className={`adminSidebar ${sidebarOpen ? "" : "collapsed"}`}
       >
 
         <div className="sidebarLogo">
@@ -79,7 +92,7 @@ export default function AdminLayout({ children }) {
           {menuItems.map((item) => (
 
             <NavLink
-              key={item.title}
+              key={item.path}
               to={item.path}
               end={item.path === "/admin"}
             >
@@ -145,12 +158,16 @@ export default function AdminLayout({ children }) {
                 setSidebarOpen(!sidebarOpen)
               }
             >
+
               ☰
+
             </button>
 
             <div className="searchBox">
 
-              <span>🔍</span>
+              <span>
+                🔍
+              </span>
 
               <input
                 type="text"
@@ -220,5 +237,7 @@ export default function AdminLayout({ children }) {
       </div>
 
     </div>
+
   );
+
 }
