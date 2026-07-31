@@ -5,7 +5,7 @@ const API = "/api/categories";
 export default function CategoryTable({
   categories,
   onEdit,
-  onRefresh
+  onRefresh,
 }) {
 
   async function handleDelete(id) {
@@ -20,13 +20,14 @@ export default function CategoryTable({
 
       await axios.delete(`${API}/${id}`);
 
-      onRefresh();
+      onRefresh?.();
 
     } catch (error) {
 
       console.error(error);
 
       alert("Unable to delete category.");
+
     }
 
   }
@@ -42,8 +43,11 @@ export default function CategoryTable({
           <tr>
 
             <th>#</th>
+
             <th>Category</th>
+
             <th>Status</th>
+
             <th>Actions</th>
 
           </tr>
@@ -60,7 +64,9 @@ export default function CategoryTable({
                 colSpan="4"
                 className="emptyTable"
               >
+
                 📂 No Categories Found
+
               </td>
 
             </tr>
@@ -69,14 +75,22 @@ export default function CategoryTable({
 
             categories.map((item, index) => (
 
-              <tr key={item.id}>
+              <tr
+                key={item._id || item.id}
+              >
 
-                <td>{index + 1}</td>
+                <td>
+
+                  {index + 1}
+
+                </td>
 
                 <td>
 
                   <span className="categoryBadge">
-                    {item.name}
+
+                    {item.name || "-"}
+
                   </span>
 
                 </td>
@@ -84,7 +98,9 @@ export default function CategoryTable({
                 <td>
 
                   <span className="activeBadge">
+
                     Active
+
                   </span>
 
                 </td>
@@ -96,17 +112,25 @@ export default function CategoryTable({
                     <button
                       type="button"
                       className="editBtn"
-                      onClick={() => onEdit(item)}
+                      onClick={() => onEdit?.(item)}
                     >
+
                       ✏ Edit
+
                     </button>
 
                     <button
                       type="button"
                       className="deleteBtn"
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() =>
+                        handleDelete(
+                          item._id || item.id
+                        )
+                      }
                     >
+
                       🗑 Delete
+
                     </button>
 
                   </div>
