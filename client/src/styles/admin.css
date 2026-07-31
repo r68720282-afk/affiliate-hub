@@ -1,4 +1,3 @@
-
 /* ===================================================
    AFFILIATE HUB ADMIN PANEL
    PREMIUM ADMIN CSS
@@ -516,6 +515,494 @@ body{
   padding:28px;
 
   flex:1;
+
+}/* ===================================================
+   PART 2
+   DASHBOARD • TABLE • BADGES
+=================================================== */
+
+/* ===========================
+   DASHBOARD
+=========================== */
+
+.dashboardGrid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(260px,1fr));
+
+  gap:22px;
+
+  margin-bottom:28px;
+
+}
+
+.dashboardCard{
+
+  background:#fff;
+
+  border-radius:18px;
+
+  padding:22px;
+
+  box-shadow:var(--shadow);
+
+  transition:.3s;
+
+  position:relative;
+
+  overflow:hidden;
+
+}
+
+.dashboardCard:hover{
+
+  transform:translateY(-6px);
+
+}
+
+.dashboardCard::before{
+
+  content:"";
+
+  position:absolute;
+
+  left:0;
+
+  top:0;
+
+  width:5px;
+
+  height:100%;
+
+  background:var(--primary);
+
+}
+
+.cardTop{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:16px;
+
+  margin-bottom:18px;
+
+}
+
+.cardIcon{
+
+  width:60px;
+
+  height:60px;
+
+  border-radius:16px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  font-size:28px;
+
+}
+
+.dashboardCard.blue .cardIcon{
+
+  background:#dbeafe;
+
+}
+
+.dashboardCard.green .cardIcon{
+
+  background:#dcfce7;
+
+}
+
+.dashboardCard.orange .cardIcon{
+
+  background:#ffedd5;
+
+}
+
+.dashboardCard.purple .cardIcon{
+
+  background:#ede9fe;
+
+}
+
+.cardInfo h4{
+
+  margin:0;
+
+  font-size:17px;
+
+  color:#111827;
+
+}
+
+.cardInfo p{
+
+  margin:5px 0 0;
+
+  color:#6b7280;
+
+  font-size:13px;
+
+}
+
+.dashboardCard h2{
+
+  margin:10px 0;
+
+  font-size:34px;
+
+  color:#111827;
+
+}
+
+.cardTrend{
+
+  color:#16a34a;
+
+  font-size:14px;
+
+  font-weight:600;
+
+}
+
+/* ===========================
+   PRODUCT TABLE
+=========================== */
+
+.productTable{
+
+  overflow:auto;
+
+  border-radius:16px;
+
+}
+
+.productTable table{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+  background:#fff;
+
+}
+
+.productTable thead{
+
+  background:#f8fafc;
+
+}
+
+.productTable th{
+
+  padding:18px;
+
+  text-align:left;
+
+  color:#374151;
+
+  font-size:14px;
+
+  border-bottom:2px solid var(--border);
+
+}
+
+.productTable td{
+
+  padding:18px;
+
+  border-bottom:1px solid var(--border);
+
+}
+
+.productTable tbody tr{
+
+  transition:.25s;
+
+}
+
+.productTable tbody tr:hover{
+
+  background:#f9fbff;
+
+}
+
+/* ===========================
+   PRODUCT INFO
+=========================== */
+
+.productInfo{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:4px;
+
+}
+
+.productInfo strong{
+
+  color:#111827;
+
+}
+
+.productInfo small{
+
+  color:#6b7280;
+
+  font-size:12px;
+
+}
+
+/* ===========================
+   IMAGE
+=========================== */
+
+.thumb{
+
+  width:70px;
+
+  height:70px;
+
+  border-radius:12px;
+
+  object-fit:cover;
+
+  border:1px solid var(--border);
+
+}
+
+/* ===========================
+   BADGES
+=========================== */
+
+.categoryBadge,
+.activeBadge,
+.inactiveBadge,
+.featuredBadge,
+.trendingBadge{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:7px 14px;
+
+  border-radius:999px;
+
+  font-size:12px;
+
+  font-weight:600;
+
+}
+
+.categoryBadge{
+
+  background:#eef2ff;
+
+  color:#4338ca;
+
+}
+
+.activeBadge{
+
+  background:#dcfce7;
+
+  color:#166534;
+
+}
+
+.inactiveBadge{
+
+  background:#fee2e2;
+
+  color:#b91c1c;
+
+}
+
+.featuredBadge{
+
+  background:#fef3c7;
+
+  color:#92400e;
+
+}
+
+.trendingBadge{
+
+  background:#ffedd5;
+
+  color:#c2410c;
+
+}
+
+/* ===========================
+   ACTION BUTTONS
+=========================== */
+
+.actionButtons{
+
+  display:flex;
+
+  gap:8px;
+
+}
+
+.editBtn,
+.deleteBtn,
+.viewBtn{
+
+  padding:9px 14px;
+
+  border:none;
+
+  border-radius:10px;
+
+  color:#fff;
+
+  cursor:pointer;
+
+  font-size:13px;
+
+  transition:.25s;
+
+}
+
+.editBtn{
+
+  background:#2563eb;
+
+}
+
+.editBtn:hover{
+
+  background:#1d4ed8;
+
+}
+
+.deleteBtn{
+
+  background:#ef4444;
+
+}
+
+.deleteBtn:hover{
+
+  background:#dc2626;
+
+}
+
+.viewBtn{
+
+  background:#16a34a;
+
+}
+
+.viewBtn:hover{
+
+  background:#15803d;
+
+}
+
+/* ===========================
+   TABLE TOOLBAR
+=========================== */
+
+.tableToolbar{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:16px;
+
+  margin-bottom:22px;
+
+  flex-wrap:wrap;
+
+}
+
+.tableToolbar input{
+
+  flex:1;
+
+  min-width:260px;
+
+  padding:13px 15px;
+
+  border:1px solid var(--border);
+
+  border-radius:12px;
+
+}
+
+.tableToolbar select{
+
+  width:220px;
+
+  padding:13px;
+
+  border:1px solid var(--border);
+
+  border-radius:12px;
+
+}
+
+/* ===========================
+   PAGINATION
+=========================== */
+
+.pagination{
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:14px;
+
+  margin-top:25px;
+
+}
+
+.pageBtn{
+
+  background:#2563eb;
+
+  color:#fff;
+
+  padding:10px 18px;
+
+  border-radius:10px;
+
+}
+
+.pageBtn:hover{
+
+  background:#1d4ed8;
+
+}
+
+.pageInfo{
+
+  font-weight:600;
+
+  color:#374151;
 
 }
 /* ===================================================
