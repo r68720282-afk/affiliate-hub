@@ -1,648 +1,129 @@
-/* ==========================================
+
+/* ===================================================
    AFFILIATE HUB ADMIN PANEL
+   PREMIUM ADMIN CSS
    PART 1
-   Layout • Cards • Forms • Buttons
-========================================== */
+=================================================== */
 
 :root{
 
   --primary:#2563eb;
   --primary-dark:#1d4ed8;
 
-  --success:#16a34a;
-  --danger:#dc2626;
+  --success:#22c55e;
+  --danger:#ef4444;
   --warning:#f59e0b;
 
-  --text:#111827;
-  --text-light:#6b7280;
+  --bg:#f3f6fb;
 
-  --bg:#f4f7fb;
+  --sidebar:#111827;
 
   --card:#ffffff;
 
   --border:#e5e7eb;
 
-  --radius:14px;
+  --text:#111827;
+
+  --text-light:#6b7280;
+
+  --radius:16px;
 
   --shadow:
-    0 10px 25px rgba(0,0,0,.08);
+  0 10px 30px rgba(15,23,42,.08);
 
 }
 
-/* ==========================
-   PAGE
-========================== */
+*{
 
-.adminPage{
+  box-sizing:border-box;
 
-  display:flex;
+}
 
-  flex-direction:column;
+body{
 
-  gap:24px;
-
-  padding:25px;
+  margin:0;
 
   background:var(--bg);
 
+  font-family:
+  Inter,
+  system-ui,
+  sans-serif;
+
+}
+
+/* ===========================
+   ADMIN LAYOUT
+=========================== */
+
+.adminLayout{
+
+  display:flex;
+
   min-height:100vh;
 
-}
-
-.adminHeader{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:8px;
+  background:var(--bg);
 
 }
 
-.adminHeader h1{
+/* ===========================
+   SIDEBAR
+=========================== */
 
-  margin:0;
+.adminSidebar{
 
-  color:var(--text);
+  width:270px;
 
-  font-size:32px;
-
-  font-weight:700;
-
-}
-
-.adminHeader p{
-
-  margin:0;
-
-  color:var(--text-light);
-
-  font-size:15px;
-
-}
-
-/* ==========================
-   CARD
-========================== */
-
-.adminCard{
-
-  background:var(--card);
-
-  border-radius:var(--radius);
-
-  padding:24px;
-
-  box-shadow:var(--shadow);
-
-}
-
-/* ==========================
-   GRID
-========================== */
-
-.dashboardGrid{
-
-  display:grid;
-
-  grid-template-columns:
-  repeat(auto-fit,minmax(230px,1fr));
-
-  gap:20px;
-
-}
-
-.bottomSection{
-
-  display:grid;
-
-  grid-template-columns:1fr 1fr;
-
-  gap:20px;
-
-}
-
-.bottomCard{
-
-  background:#fff;
-
-  border-radius:14px;
-
-  padding:20px;
-
-  box-shadow:var(--shadow);
-
-}
-
-/* ==========================
-   DASHBOARD CARDS
-========================== */
-
-.dashboardCard{
-
-  background:#fff;
-
-  border-radius:14px;
-
-  padding:20px;
-
-  box-shadow:var(--shadow);
-
-  transition:.25s;
-
-}
-
-.dashboardCard:hover{
-
-  transform:translateY(-4px);
-
-}
-
-.dashboardCard h3{
-
-  margin:0;
-
-  color:var(--text-light);
-
-  font-size:15px;
-
-}
-
-.dashboardCard h2{
-
-  margin-top:15px;
-
-  font-size:34px;
-
-  color:var(--primary);
-
-}
-
-/* ==========================
-   FORM
-========================== */
-
-.adminForm{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:18px;
-
-}
-
-.adminForm label{
-
-  display:block;
-
-  margin-bottom:6px;
-
-  font-weight:600;
-
-  color:var(--text);
-
-}
-
-.adminForm input,
-
-.adminForm textarea,
-
-.adminForm select{
-
-  width:100%;
-
-  padding:12px 14px;
-
-  border:1px solid var(--border);
-
-  border-radius:10px;
-
-  outline:none;
-
-  font-size:15px;
-
-  transition:.2s;
-
-  background:#fff;
-
-}
-
-.adminForm textarea{
-
-  min-height:120px;
-
-  resize:vertical;
-
-}
-
-.adminForm input:focus,
-
-.adminForm textarea:focus,
-
-.adminForm select:focus{
-
-  border-color:var(--primary);
-
-  box-shadow:
-  0 0 0 4px rgba(37,99,235,.12);
-
-}
-
-/* ==========================
-   BUTTONS
-========================== */
-
-button{
-
-  cursor:pointer;
-
-  transition:.25s;
-
-  border:none;
-
-  border-radius:10px;
-
-}
-
-.primaryBtn{
-
-  background:var(--primary);
+  background:var(--sidebar);
 
   color:#fff;
 
-  padding:12px 20px;
-
-  font-weight:600;
-
-}
-
-.primaryBtn:hover{
-
-  background:var(--primary-dark);
-
-}
-
-.secondaryBtn{
-
-  background:#eef2ff;
-
-  color:var(--primary);
-
-  padding:12px 20px;
-
-  font-weight:600;
-
-}
-
-.secondaryBtn:hover{
-
-  background:#dbeafe;
-
-}
-
-.dangerBtn{
-
-  background:#fee2e2;
-
-  color:var(--danger);
-
-  padding:12px 20px;
-
-  font-weight:600;
-
-}
-
-.dangerBtn:hover{
-
-  background:#fecaca;
-
-}
-
-button:disabled{
-
-  opacity:.6;
-
-  cursor:not-allowed;
-
-}
-/* ==========================================
-   AFFILIATE HUB ADMIN PANEL
-   PART 2
-   Product Table • Toolbar • Pagination
-========================================== */
-
-/* ==========================
-   TABLE TOOLBAR
-========================== */
-
-.tableToolbar{
-
   display:flex;
 
-  justify-content:space-between;
+  flex-direction:column;
+
+  transition:.35s;
+
+  position:sticky;
+
+  top:0;
+
+  height:100vh;
+
+  overflow:hidden;
+
+}
+
+.adminSidebar.collapsed{
+
+  width:90px;
+
+}
+
+.sidebarLogo{
+
+  display:flex;
 
   align-items:center;
 
   gap:15px;
 
-  margin-bottom:20px;
+  padding:28px 20px;
 
-  flex-wrap:wrap;
-
-}
-
-.tableToolbar input{
-
-  flex:1;
-
-  min-width:260px;
-
-  padding:12px 15px;
-
-  border:1px solid var(--border);
-
-  border-radius:10px;
-
-  outline:none;
-
-  transition:.25s;
+  border-bottom:
+  1px solid rgba(255,255,255,.08);
 
 }
 
-.tableToolbar input:focus{
+.logoCircle{
 
-  border-color:var(--primary);
+  width:52px;
 
-  box-shadow:0 0 0 4px rgba(37,99,235,.12);
+  height:52px;
 
-}
-
-.tableToolbar select{
-
-  width:220px;
-
-  padding:12px;
-
-  border-radius:10px;
-
-  border:1px solid var(--border);
-
-  outline:none;
-
-}
-
-/* ==========================
-   PRODUCT TABLE
-========================== */
-
-.productTable{
-
-  width:100%;
-
-  overflow-x:auto;
-
-}
-
-.productTable table{
-
-  width:100%;
-
-  border-collapse:collapse;
-
-  background:#fff;
-
-}
-
-.productTable thead{
-
-  background:#f8fafc;
-
-}
-
-.productTable th{
-
-  padding:16px;
-
-  text-align:left;
-
-  font-size:14px;
-
-  color:#374151;
-
-  border-bottom:2px solid var(--border);
-
-}
-
-.productTable td{
-
-  padding:16px;
-
-  border-bottom:1px solid var(--border);
-
-  vertical-align:middle;
-
-}
-
-.productTable tbody tr{
-
-  transition:.2s;
-
-}
-
-.productTable tbody tr:hover{
-
-  background:#f8fbff;
-
-}
-
-/* ==========================
-   IMAGE
-========================== */
-
-.thumb{
-
-  width:70px;
-
-  height:70px;
-
-  object-fit:cover;
-
-  border-radius:10px;
-
-  border:1px solid #ddd;
-
-}
-
-/* ==========================
-   BADGES
-========================== */
-
-.activeBadge{
-
-  display:inline-block;
-
-  padding:6px 12px;
-
-  border-radius:20px;
-
-  background:#dcfce7;
-
-  color:#15803d;
-
-  font-size:13px;
-
-  font-weight:600;
-
-}
-
-.inactiveBadge{
-
-  display:inline-block;
-
-  padding:6px 12px;
-
-  border-radius:20px;
-
-  background:#fee2e2;
-
-  color:#b91c1c;
-
-  font-size:13px;
-
-  font-weight:600;
-
-}
-
-.featuredBadge{
-
-  display:inline-block;
-
-  padding:6px 12px;
-
-  border-radius:20px;
-
-  background:#fef3c7;
-
-  color:#92400e;
-
-  font-size:13px;
-
-  font-weight:600;
-
-}
-
-.trendingBadge{
-
-  display:inline-block;
-
-  padding:6px 12px;
-
-  border-radius:20px;
-
-  background:#ffedd5;
-
-  color:#c2410c;
-
-  font-size:13px;
-
-  font-weight:600;
-
-}
-
-/* ==========================
-   ACTION BUTTONS
-========================== */
-
-.actionButtons{
-
-  display:flex;
-
-  gap:8px;
-
-  flex-wrap:wrap;
-
-}
-
-.editBtn{
+  border-radius:14px;
 
   background:#2563eb;
-
-  color:#fff;
-
-  padding:8px 14px;
-
-  font-size:13px;
-
-}
-
-.editBtn:hover{
-
-  background:#1d4ed8;
-
-}
-
-.deleteBtn{
-
-  background:#dc2626;
-
-  color:#fff;
-
-  padding:8px 14px;
-
-  font-size:13px;
-
-}
-
-.deleteBtn:hover{
-
-  background:#b91c1c;
-
-}
-
-.viewBtn{
-
-  background:#059669;
-
-  color:#fff;
-
-  padding:8px 14px;
-
-  font-size:13px;
-
-}
-
-.viewBtn:hover{
-
-  background:#047857;
-
-}
-
-/* ==========================
-   EMPTY STATE
-========================== */
-
-.emptyState{
-
-  text-align:center;
-
-  padding:50px 20px;
-
-  color:#6b7280;
-
-}
-
-.emptyState h3{
-
-  margin-bottom:10px;
-
-}
-
-/* ==========================
-   PAGINATION
-========================== */
-
-.pagination{
 
   display:flex;
 
@@ -650,37 +131,459 @@ button:disabled{
 
   align-items:center;
 
-  gap:15px;
+  font-weight:700;
 
-  margin-top:25px;
+  font-size:18px;
+
+  color:#fff;
 
 }
 
-.pagination button{
+.logoText h2{
+
+  margin:0;
+
+  font-size:22px;
+
+}
+
+.logoText span{
+
+  font-size:13px;
+
+  color:#9ca3af;
+
+}
+
+/* ===========================
+   MENU
+=========================== */
+
+.sidebarMenu{
+
+  flex:1;
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:8px;
+
+  padding:20px 12px;
+
+}
+
+.sidebarMenu a{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  color:#d1d5db;
+
+  text-decoration:none;
+
+  padding:14px 16px;
+
+  border-radius:12px;
+
+  transition:.25s;
+
+}
+
+.sidebarMenu a:hover{
+
+  background:#1f2937;
+
+  color:#fff;
+
+}
+
+.sidebarMenu a.active{
 
   background:#2563eb;
 
   color:#fff;
 
-  padding:10px 18px;
+}
 
-  border-radius:8px;
+.menuIcon{
+
+  width:26px;
+
+  text-align:center;
+
+  font-size:18px;
 
 }
 
-.pagination button:hover{
+.menuTitle{
 
-  background:#1d4ed8;
+  font-size:15px;
 
-}
-
-.pagination button:disabled{
-
-  opacity:.5;
+  font-weight:600;
 
 }
 
-.pagination span{
+/* ===========================
+   SIDEBAR FOOTER
+=========================== */
+
+.sidebarBottom{
+
+  padding:20px;
+
+}
+
+.logoutBtn{
+
+  width:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:12px;
+
+  padding:14px;
+
+  background:#dc2626;
+
+  color:#fff;
+
+  border:none;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  transition:.25s;
+
+}
+
+.logoutBtn:hover{
+
+  background:#b91c1c;
+
+}
+
+/* ===========================
+   MAIN
+=========================== */
+
+.adminMain{
+
+  flex:1;
+
+  display:flex;
+
+  flex-direction:column;
+
+}
+
+/* ===========================
+   TOPBAR
+=========================== */
+
+.adminTopbar{
+
+  height:75px;
+
+  background:#fff;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  padding:0 28px;
+
+  box-shadow:var(--shadow);
+
+  position:sticky;
+
+  top:0;
+
+  z-index:100;
+
+}
+
+.topbarLeft{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:20px;
+
+}
+
+.menuBtn{
+
+  width:46px;
+
+  height:46px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#eff6ff;
+
+  color:#2563eb;
+
+  font-size:20px;
+
+  cursor:pointer;
+
+}
+
+.menuBtn:hover{
+
+  background:#dbeafe;
+
+}
+
+/* ===========================
+   SEARCH
+=========================== */
+
+.searchBox{
+
+  width:360px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  background:#f8fafc;
+
+  border:1px solid var(--border);
+
+  border-radius:14px;
+
+  padding:12px 16px;
+
+}
+
+.searchBox input{
+
+  width:100%;
+
+  border:none;
+
+  outline:none;
+
+  background:transparent;
+
+  font-size:15px;
+
+}
+
+/* ===========================
+   RIGHT
+=========================== */
+
+.topbarRight{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:18px;
+
+}
+
+.iconBtn{
+
+  width:46px;
+
+  height:46px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#f8fafc;
+
+  cursor:pointer;
+
+  position:relative;
+
+  font-size:20px;
+
+}
+
+.iconBtn:hover{
+
+  background:#eef2ff;
+
+}
+
+.notificationBadge{
+
+  position:absolute;
+
+  top:5px;
+
+  right:5px;
+
+  width:18px;
+
+  height:18px;
+
+  border-radius:50%;
+
+  background:#ef4444;
+
+  color:#fff;
+
+  font-size:11px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+}
+
+/* ===========================
+   PROFILE
+=========================== */
+
+.adminProfile{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+}
+
+.avatar{
+
+  width:46px;
+
+  height:46px;
+
+  border-radius:50%;
+
+  background:#2563eb;
+
+  color:#fff;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  font-weight:700;
+
+  font-size:18px;
+
+}
+
+.adminProfile strong{
+
+  display:block;
+
+  color:#111827;
+
+}
+
+.adminProfile small{
+
+  color:#6b7280;
+
+}
+
+/* ===========================
+   CONTENT
+=========================== */
+
+.adminContent{
+
+  padding:28px;
+
+  flex:1;
+
+}
+/* ===================================================
+   PART 3
+   PRODUCT FORM • CATEGORY • CSV
+=================================================== */
+
+/* ===========================
+   PRODUCT FORM
+=========================== */
+
+.productForm{
+
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+
+}
+
+.productSection{
+
+  background:#fff;
+
+  border-radius:16px;
+
+  padding:22px;
+
+  box-shadow:var(--shadow);
+
+}
+
+.productSection h3{
+
+  margin:0 0 20px;
+
+  font-size:18px;
+
+  color:#111827;
+
+  border-bottom:1px solid var(--border);
+
+  padding-bottom:12px;
+
+}
+
+.formGrid{
+
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:20px;
+
+}
+
+.formGroup{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:8px;
+
+}
+
+.formGroup label{
+
+  font-size:14px;
 
   font-weight:600;
 
@@ -688,9 +591,171 @@ button:disabled{
 
 }
 
-/* ==========================
-   CATEGORY MANAGER
-========================== */
+.formGroup input,
+.formGroup textarea,
+.formGroup select{
+
+  width:100%;
+
+  padding:13px 15px;
+
+  border:1px solid var(--border);
+
+  border-radius:12px;
+
+  background:#fff;
+
+  transition:.25s;
+
+}
+
+.formGroup textarea{
+
+  min-height:130px;
+
+  resize:vertical;
+
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus,
+.formGroup select:focus{
+
+  outline:none;
+
+  border-color:var(--primary);
+
+  box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+/* ===========================
+   IMAGE LIST
+=========================== */
+
+.dynamicRow{
+
+  display:flex;
+
+  gap:12px;
+
+  margin-bottom:14px;
+
+}
+
+.dynamicRow input{
+
+  flex:1;
+
+}
+
+.dynamicRow button{
+
+  background:#ef4444;
+
+  color:#fff;
+
+  border:none;
+
+  border-radius:10px;
+
+  padding:0 16px;
+
+}
+
+.dynamicRow button:hover{
+
+  background:#dc2626;
+
+}
+
+.previewImage{
+
+  width:90px;
+
+  height:90px;
+
+  object-fit:cover;
+
+  border-radius:12px;
+
+  border:1px solid var(--border);
+
+  margin-top:10px;
+
+}
+
+/* ===========================
+   STORE CARD
+=========================== */
+
+.storeCard{
+
+  display:grid;
+
+  grid-template-columns:
+  180px
+  130px
+  1fr
+  auto;
+
+  gap:12px;
+
+  margin-bottom:15px;
+
+}
+
+/* ===========================
+   CHECKBOX
+=========================== */
+
+.checkboxGroup{
+
+  display:flex;
+
+  gap:28px;
+
+  flex-wrap:wrap;
+
+}
+
+.checkboxGroup label{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+}
+
+/* ===========================
+   FORM BUTTONS
+=========================== */
+
+.formActions{
+
+  display:flex;
+
+  gap:15px;
+
+  margin-top:20px;
+
+}
+
+.formActions button{
+
+  min-width:170px;
+
+  padding:14px 18px;
+
+  font-weight:600;
+
+}
+
+/* ===========================
+   CATEGORY
+=========================== */
 
 .categoryManager{
 
@@ -698,7 +763,30 @@ button:disabled{
 
   flex-direction:column;
 
-  gap:20px;
+  gap:24px;
+
+}
+
+.categoryContent{
+
+  display:grid;
+
+  grid-template-columns:320px 1fr;
+
+  gap:24px;
+
+}
+
+.categoryFormCard,
+.categoryTableCard{
+
+  background:#fff;
+
+  border-radius:16px;
+
+  padding:22px;
+
+  box-shadow:var(--shadow);
 
 }
 
@@ -710,38 +798,36 @@ button:disabled{
 
 }
 
-.categoryTable th,
+.categoryTable th{
 
+  background:#f8fafc;
+
+}
+
+.categoryTable th,
 .categoryTable td{
 
-  padding:14px;
+  padding:15px;
 
   border-bottom:1px solid var(--border);
 
 }
 
-.categoryTable th{
+.categoryBadge{
 
-  background:#f8fafc;
+  background:#eef2ff;
 
-  text-align:left;
+  color:#4338ca;
 
-}
+  padding:6px 12px;
 
-.categoryTable tr:hover{
-
-  background:#f9fafb;
+  border-radius:999px;
 
 }
-/* ==========================================
-   AFFILIATE HUB ADMIN PANEL
-   PART 3
-   CSV Import • Responsive • Utilities
-========================================== */
 
-/* ==========================
+/* ===========================
    CSV IMPORT
-========================== */
+=========================== */
 
 .csvUploader{
 
@@ -749,63 +835,43 @@ button:disabled{
 
   flex-direction:column;
 
-  gap:18px;
+  gap:20px;
 
 }
 
-.csvUploader h2{
-
-  margin:0;
-
-  color:var(--text);
-
-}
-
-.csvInfo{
-
-  color:var(--text-light);
-
-  font-size:14px;
-
-}
-
-.csvUploader input[type="file"]{
-
-  width:100%;
-
-  padding:14px;
+.csvDropzone{
 
   border:2px dashed #cbd5e1;
 
-  border-radius:12px;
+  border-radius:18px;
 
   background:#f8fafc;
 
-  cursor:pointer;
+  padding:45px 20px;
+
+  text-align:center;
 
   transition:.25s;
 
 }
 
-.csvUploader input[type="file"]:hover{
+.csvDropzone:hover{
 
-  border-color:var(--primary);
+  border-color:#2563eb;
 
   background:#eff6ff;
 
 }
 
-.selectedFile{
+.csvDropzone h3{
 
-  padding:14px;
+  margin:15px 0 8px;
 
-  border-radius:10px;
+}
 
-  background:#eff6ff;
+.csvDropzone p{
 
-  color:#1e3a8a;
-
-  font-weight:600;
+  color:#6b7280;
 
 }
 
@@ -813,85 +879,27 @@ button:disabled{
 
   display:flex;
 
-  gap:12px;
-
-  flex-wrap:wrap;
+  gap:15px;
 
 }
 
 .csvButtons button{
 
-  min-width:150px;
+  min-width:170px;
 
-  padding:12px 18px;
-
-  border-radius:10px;
-
-  font-weight:600;
+  padding:13px 18px;
 
 }
-
-.csvButtons button:first-child{
-
-  background:var(--primary);
-
-  color:#fff;
-
-}
-
-.csvButtons button:first-child:hover{
-
-  background:var(--primary-dark);
-
-}
-
-.csvButtons button:last-child{
-
-  background:#e5e7eb;
-
-  color:#111827;
-
-}
-
-.csvButtons button:last-child:hover{
-
-  background:#d1d5db;
-
-}
-
-/* ==========================
-   RESULT
-========================== */
 
 .csvResult{
 
-  margin-top:25px;
+  background:#fff;
 
-  border-radius:14px;
+  border-radius:16px;
 
   padding:20px;
 
-}
-
-.csvResult.success{
-
-  background:#ecfdf5;
-
-  border:1px solid #22c55e;
-
-}
-
-.csvResult.error{
-
-  background:#fef2f2;
-
-  border:1px solid #ef4444;
-
-}
-
-.csvResult h3{
-
-  margin-top:0;
+  box-shadow:var(--shadow);
 
 }
 
@@ -900,25 +908,21 @@ button:disabled{
   display:grid;
 
   grid-template-columns:
-  repeat(auto-fit,minmax(180px,1fr));
+  repeat(auto-fit,minmax(170px,1fr));
 
   gap:18px;
-
-  margin-top:20px;
 
 }
 
 .csvStatCard{
 
-  background:#fff;
-
-  border-radius:12px;
-
-  padding:20px;
-
   text-align:center;
 
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  background:#f8fafc;
+
+  border-radius:14px;
+
+  padding:22px;
 
 }
 
@@ -932,33 +936,133 @@ button:disabled{
 
 .csvStatCard p{
 
-  margin:12px 0 0;
+  margin-top:12px;
 
   font-size:30px;
 
   font-weight:700;
 
-  color:var(--primary);
+  color:#2563eb;
+
+}
+/* ===================================================
+   PART 4
+   RESPONSIVE • UTILITIES • ANIMATIONS
+=================================================== */
+
+/* ===========================
+   PAGE LAYOUT
+=========================== */
+
+.dashboardContent{
+
+  display:grid;
+
+  grid-template-columns:420px 1fr;
+
+  gap:24px;
+
+  margin-top:24px;
 
 }
 
-/* ==========================
+.leftPanel{
+
+  min-width:0;
+
+}
+
+.rightPanel{
+
+  min-width:0;
+
+}
+
+.bottomSection{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:24px;
+
+  margin-top:24px;
+
+}
+
+/* ===========================
+   COMMON CARD
+=========================== */
+
+.adminCard{
+
+  background:#fff;
+
+  border-radius:18px;
+
+  padding:24px;
+
+  box-shadow:var(--shadow);
+
+}
+
+.adminCard h2{
+
+  margin:0 0 22px;
+
+  color:#111827;
+
+  font-size:22px;
+
+}
+
+/* ===========================
    LOADING
-========================== */
+=========================== */
 
 .loading{
 
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  min-height:220px;
+
+  color:#6b7280;
+
+  font-size:18px;
+
+}
+
+/* ===========================
+   EMPTY STATE
+=========================== */
+
+.emptyState{
+
   text-align:center;
 
-  padding:40px;
+  padding:60px 20px;
+
+}
+
+.emptyState h3{
+
+  margin-bottom:10px;
+
+}
+
+.emptyState p{
 
   color:#6b7280;
 
 }
 
-/* ==========================
+/* ===========================
    SCROLLBAR
-========================== */
+=========================== */
 
 ::-webkit-scrollbar{
 
@@ -970,7 +1074,7 @@ button:disabled{
 
 ::-webkit-scrollbar-track{
 
-  background:#f1f5f9;
+  background:#edf2f7;
 
 }
 
@@ -978,7 +1082,7 @@ button:disabled{
 
   background:#cbd5e1;
 
-  border-radius:20px;
+  border-radius:999px;
 
 }
 
@@ -988,15 +1092,40 @@ button:disabled{
 
 }
 
-/* ==========================
-   UTILITIES
-========================== */
+/* ===========================
+   ANIMATION
+=========================== */
 
-.textCenter{
+.dashboardCard,
+.adminCard{
 
-  text-align:center;
+  animation:fadeUp .35s ease;
 
 }
+
+@keyframes fadeUp{
+
+  from{
+
+    opacity:0;
+
+    transform:translateY(18px);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+  }
+
+}
+
+/* ===========================
+   UTILITIES
+=========================== */
 
 .mt10{
 
@@ -1010,9 +1139,21 @@ button:disabled{
 
 }
 
+.mt30{
+
+  margin-top:30px;
+
+}
+
 .mb20{
 
   margin-bottom:20px;
+
+}
+
+.textCenter{
+
+  text-align:center;
 
 }
 
@@ -1022,9 +1163,25 @@ button:disabled{
 
 }
 
-/* ==========================
+.hidden{
+
+  display:none;
+
+}
+
+/* ===========================
    RESPONSIVE
-========================== */
+=========================== */
+
+@media(max-width:1200px){
+
+  .dashboardContent{
+
+    grid-template-columns:1fr;
+
+  }
+
+}
 
 @media(max-width:992px){
 
@@ -1034,17 +1191,69 @@ button:disabled{
 
   }
 
+  .categoryContent{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .storeCard{
+
+    grid-template-columns:1fr;
+
+  }
+
 }
 
 @media(max-width:768px){
 
-  .adminPage{
+  .adminSidebar{
 
-    padding:16px;
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    bottom:0;
+
+    z-index:1000;
+
+  }
+
+  .adminSidebar.collapsed{
+
+    transform:translateX(-100%);
+
+    width:270px;
+
+  }
+
+  .adminTopbar{
+
+    padding:0 18px;
+
+  }
+
+  .searchBox{
+
+    display:none;
+
+  }
+
+  .adminContent{
+
+    padding:18px;
 
   }
 
   .dashboardGrid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .formGrid{
 
     grid-template-columns:1fr;
 
@@ -1078,15 +1287,27 @@ button:disabled{
 
   }
 
-  .pagination{
+  .formActions{
 
-    flex-wrap:wrap;
+    flex-direction:column;
+
+  }
+
+  .formActions button{
+
+    width:100%;
+
+  }
+
+  .actionButtons{
+
+    flex-direction:column;
 
   }
 
   .productTable table{
 
-    min-width:850px;
+    min-width:950px;
 
   }
 
@@ -1096,13 +1317,7 @@ button:disabled{
 
   .adminHeader h1{
 
-    font-size:24px;
-
-  }
-
-  .adminCard{
-
-    padding:16px;
+    font-size:26px;
 
   }
 
@@ -1112,240 +1327,17 @@ button:disabled{
 
   }
 
-  .csvStatCard p{
+  .logoCircle{
 
-    font-size:24px;
+    width:46px;
+
+    height:46px;
 
   }
 
-}
-/* ==========================================
-   PRODUCT FORM PREMIUM
-========================================== */
+  .adminCard{
 
-.productForm{
-
-  display:flex;
-  flex-direction:column;
-  gap:24px;
-
-}
-
-.productForm h2{
-
-  margin:0;
-  font-size:28px;
-  color:var(--text);
-
-}
-
-.productForm h3{
-
-  margin:10px 0;
-  color:var(--text);
-  padding-bottom:10px;
-  border-bottom:1px solid var(--border);
-
-}
-
-.formGrid{
-
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:20px;
-
-}
-
-.formGroup{
-
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-
-}
-
-.formGroup label{
-
-  font-weight:600;
-  color:#374151;
-
-}
-
-.formGroup input,
-.formGroup textarea,
-.formGroup select{
-
-  width:100%;
-  padding:13px 15px;
-  border:1px solid var(--border);
-  border-radius:10px;
-  background:#fff;
-  font-size:15px;
-  transition:.25s;
-
-}
-
-.formGroup input:focus,
-.formGroup textarea:focus,
-.formGroup select:focus{
-
-  outline:none;
-  border-color:var(--primary);
-  box-shadow:0 0 0 4px rgba(37,99,235,.12);
-
-}
-
-.dynamicRow{
-
-  display:flex;
-  gap:12px;
-  align-items:center;
-  margin-bottom:12px;
-
-}
-
-.dynamicRow input{
-
-  flex:1;
-
-}
-
-.dynamicRow button{
-
-  background:#dc2626;
-  color:#fff;
-  padding:11px 16px;
-  border-radius:10px;
-
-}
-
-.dynamicRow button:hover{
-
-  background:#b91c1c;
-
-}
-
-.storeCard{
-
-  display:grid;
-  grid-template-columns:180px 140px 1fr auto;
-  gap:12px;
-  margin-bottom:15px;
-
-}
-
-.storeCard select,
-.storeCard input{
-
-  padding:12px;
-  border:1px solid var(--border);
-  border-radius:10px;
-
-}
-
-.storeCard button{
-
-  background:#dc2626;
-  color:#fff;
-  padding:12px 15px;
-
-}
-
-.checkboxGroup{
-
-  display:flex;
-  gap:30px;
-  flex-wrap:wrap;
-
-}
-
-.checkboxGroup label{
-
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-weight:600;
-
-}
-
-.checkboxGroup input{
-
-  width:18px;
-  height:18px;
-
-}
-
-.formActions{
-
-  display:flex;
-  gap:15px;
-  margin-top:20px;
-
-}
-
-.formActions button:first-child{
-
-  background:var(--primary);
-  color:#fff;
-  padding:13px 24px;
-  font-weight:600;
-
-}
-
-.formActions button:first-child:hover{
-
-  background:var(--primary-dark);
-
-}
-
-.formActions button:last-child{
-
-  background:#e5e7eb;
-  color:#111827;
-  padding:13px 24px;
-  font-weight:600;
-
-}
-
-.formActions button:last-child:hover{
-
-  background:#d1d5db;
-
-}
-
-.previewImage{
-
-  width:90px;
-  height:90px;
-  object-fit:cover;
-  border-radius:10px;
-  border:1px solid var(--border);
-}
-
-@media(max-width:900px){
-
-  .formGrid{
-
-    grid-template-columns:1fr;
-
-  }
-
-  .storeCard{
-
-    grid-template-columns:1fr;
-
-  }
-
-  .dynamicRow{
-
-    flex-direction:column;
-    align-items:stretch;
-
-  }
-
-  .formActions{
-
-    flex-direction:column;
+    padding:18px;
 
   }
 
