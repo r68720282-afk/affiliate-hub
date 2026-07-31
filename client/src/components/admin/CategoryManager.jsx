@@ -10,20 +10,31 @@ export default function CategoryManager() {
 
   const [categories, setCategories] = useState([]);
   const [editCategory, setEditCategory] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   async function loadCategories() {
 
     try {
 
+      setLoading(true);
+
       const { data } = await axios.get(API);
 
-      setCategories(Array.isArray(data) ? data : []);
+      const list = Array.isArray(data)
+        ? data
+        : data.categories || [];
+
+      setCategories(list);
 
     } catch (error) {
 
       console.error(error);
 
       setCategories([]);
+
+    } finally {
+
+      setLoading(false);
 
     }
 
@@ -43,6 +54,17 @@ export default function CategoryManager() {
 
   }
 
+  function handleEdit(category) {
+
+    setEditCategory(category);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+  }
+
   return (
 
     <div className="categoryManager">
@@ -54,8 +76,9 @@ export default function CategoryManager() {
           <h2>🗂 Category Management</h2>
 
           <p>
-            Create, edit and organize your product
-            categories.
+
+            Create, edit and organize your product categories.
+
           </p>
 
         </div>
@@ -67,9 +90,11 @@ export default function CategoryManager() {
         <div className="categoryFormCard">
 
           <h3>
+
             {editCategory
               ? "✏ Edit Category"
               : "➕ Add Category"}
+
           </h3>
 
           <CategoryForm
@@ -81,13 +106,29 @@ export default function CategoryManager() {
 
         <div className="categoryTableCard">
 
-          <h3>📋 Category List</h3>
+          <h3>
 
-          <CategoryTable
-            categories={categories}
-            onEdit={setEditCategory}
-            onRefresh={loadCategories}
-          />
+            📋 Category List ({categories.length})
+
+          </h3>
+
+          {loading ? (
+
+            <div className="loading">
+
+              Loading Categories...
+
+            </div>
+
+          ) : (
+
+            <CategoryTable
+              categories={categories}
+              onEdit={handleEdit}
+              onRefresh={loadCategories}
+            />
+
+          )}
 
         </div>
 
